@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op.c                                               :+:      :+:    :+:   */
+/*   op_bonus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 16:21:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 16:53:27 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:38:18 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push.h"
+#include "includes/push_bonus.h"
 
 void	sa(t_p *p)
 {
 	int	tmp;
 
-	if (p->lena > 0)
+	if (p->lena >= 0)
 	{
 		tmp = p->pa[p->lena];
 		p->pa[p->lena] = p->pa[p->lena - 1];
@@ -28,7 +28,7 @@ void	sb(t_p *p)
 {
 	int	tmp;
 
-	if (p->lenb > 0)
+	if (p->lenb >= 0)
 	{
 		tmp = p->pb[p->lenb];
 		p->pb[p->lenb] = p->pb[p->lenb - 1];

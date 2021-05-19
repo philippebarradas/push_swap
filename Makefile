@@ -6,7 +6,7 @@
 #    By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 09:51:11 by phbarrad          #+#    #+#              #
-#    Updated: 2021/05/18 16:28:24 by phbarrad         ###   ########.fr        #
+#    Updated: 2021/05/19 14:39:28 by phbarrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@
 ######################################################################
 
 NAME			= push_swap
+NAME_BONUS		= checker
 CC				= @gcc
 CFLAGS			= #-fsanitize=leak #-Wall -Wextra -Werror
 LIB_FLAGS		= -lncurses -lft -L ./libft
@@ -44,7 +45,7 @@ NAMEC			= ${BLUE}${BOLD}$(NAME)${END}
 #                            Source Files                            #
 ######################################################################
 
-SRCS			= main.c error.c op.c
+SRCS			= main.c error.c op.c op2.c ffree.c
 
 SRC				= $(addprefix srcs/, $(SRCS))
 
@@ -52,7 +53,7 @@ SRC				= $(addprefix srcs/, $(SRCS))
 #                         Source Files_bonus                         #
 ######################################################################
 
-BONUS			= main_bonus.c
+BONUS			= main_bonus.c error_bonus.c op_bonus.c op2_bonus.c ffree_bonus.c
 
 SRC_B			= $(addprefix bonus/, $(BONUS))
 
@@ -83,7 +84,7 @@ $(NAME): 	$(OBJ)
 bonus:		$(OBJ_B)
 			@echo "\n"
 			@$(MAKE) -C $(LIBFT)
-			$(CC) $(CFLAGS) $(INCLUDE_B) $(INCLUDE_LIB) -o $(NAME) $(OBJ_B) $(LIB_FLAGS)
+			$(CC) $(CFLAGS) $(INCLUDE_B) $(INCLUDE_LIB) -o $(NAME_BONUS) $(OBJ_B) $(LIB_FLAGS)
 			@echo "\n${GREEN}The $(NAMEC) ${GREEN}has been build" \
 				"(with ${BOLD}${WHITE}$@${END}${GREEN}) !${END}"
 
@@ -93,7 +94,7 @@ clean:
 			@echo "${LIGHTPURPLE}Cleaning ...${END}\n"
 
 fclean:		clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) $(NAME_BONUS)
 			@$(MAKE) fclean -C $(LIBFT)
 			@echo "${LIGHTPURPLE}Delete $(NAMEC)${LIGHTPURPLE}...${END}\n"
 

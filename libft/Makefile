@@ -6,7 +6,7 @@
 #    By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/19 12:18:37 by phbarrad          #+#    #+#              #
-#    Updated: 2021/05/18 13:37:49 by phbarrad         ###   ########.fr        #
+#    Updated: 2021/05/19 10:05:47 by phbarrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ RM	=	rm -rf
 HEADER	=	-I includes
 
 SRC	=	cmp.c \
+		get_next_line.c \
+		get_next_line_utils.c \
 		ft_isascii.c \
 		ft_strjoin.c \
 		ft_split.c \

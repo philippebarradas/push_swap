@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:18:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/18 14:12:14 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:30:10 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
+# define BUFFER_SIZE 100000
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 typedef struct		s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
 
+
+char				*join_str(char const *s1, char const *s2);
+int					has_return(char *str);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -30,6 +36,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
+int					ft_putstr_fd_ret(char *s, int fd, int ret);
 
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
@@ -60,7 +67,12 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 long				ft_atol(const char *str);
+int					get_next_line(int fd, char **line);
 
+size_t				ft_strlen(const char *s);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strdup(const char *s1);
 int					ft_strcmp(char *s1, char *s2);
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **alst, t_list *new);
