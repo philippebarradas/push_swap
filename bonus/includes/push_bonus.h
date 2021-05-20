@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:18:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 14:45:05 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/20 11:20:49 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_p
 	int			lena;
 	int			lenb;
 
+	int			max; //dell
 }				t_p;
 
 int			err_msg(char *str);
@@ -39,7 +40,7 @@ int			check_error(int ac, char **av, int x, int y);
 
 void		ffree(void *str);
 void		free_all(t_p *p);
-void		disp_st( t_p *p);
+void		disp_st( t_p *p, char *str);
 
 void		sa(t_p *p);
 void		sb(t_p *p);

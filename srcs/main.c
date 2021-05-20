@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 16:53:37 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/20 16:34:53 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	fill_pile(int ac, char **av, t_p *p)
 		e++;
 		i--;
 	}
-	i = -1;
+/*	i = -1;
 	while (++i < ac - 1)
 		printf("a = [%d] \n", p->pa[i]);
-	printf("\n");
+	printf("\n");*/
 	return (SUCCESS);
 }
 
@@ -74,113 +74,27 @@ int	is_sort(t_p *p)
 	int	i;
 
 	i = 0;
+	//printf("len b = [%d]\n", p->lenb);
 	if (p->lenb != -1)
 		return (ERROR);
 	while (i + 1 <= p->lena)
 	{
 		if (p->pa[i] < p->pa[i + 1])
+		{
+			//printf("len b = [%d][%d]\n", p->pa[i], p->pa[i + 1]);
 			return (ERROR);
+		}
 		i++;
 	}
+	//printf("SORTED\n\n");
 	return (SUCCESS);
 }
 
-int	loop(t_p *p)
+int abs(int a)
 {
-	char	*cmd;
-	int	x;
-	int y;
-	int i;
-
-	i = 0;
-	x = p->lena;
-	y = 0;
-	int e;
-
-	e = 0;
-	while (i < 10000000 && is_sort(p) == ERROR)
-	{
-		if (p->lenb != -1)
-		{
-			ft_putstr_fd("pa\n", STDOUT);
-			i++;
-			pa(p);
-			pa(p);
-					disp_st(p);
-
-
-		}
-		if (p->lena != -1)
-		{
-			ft_putstr_fd("pb\n", STDOUT);
-			i++;
-			pb(p);
-			pb(p);
-					disp_st(p);
-
-
-		}
-		if (p->pa[p->lena] > p->pa[0])
-		{
-			ft_putstr_fd("ra\n", STDOUT);
-			ra(p);
-					disp_st(p);
-
-		}
-		else if (p->pa[p->lena] > p->pa[p->lena - 1])
-		{
-			sa(p);
-			printf("[%d]\n", p->lena);
-			ft_putstr_fd("sa\n", STDOUT);
-					disp_st(p);
-
-		}
-		else if (p->pa[0] < p->pa[p->lena])
-		{
-			ft_putstr_fd("rra\n", STDOUT);
-			rra(p);
-					disp_st(p);
-
-		}
-		else
-		{
-			ft_putstr_fd("pb\n", STDOUT);
-			pb(p);
-					disp_st(p);
-
-		}
-		if (p->lenb >= x)
-		{
-
-
-				ft_putstr_fd("pa\n", STDOUT);
-				pa(p);
-						disp_st(p);
-
-
-		}
-		if (p->pa[0] == 0)
-			return (ERROR);
-/*		if (x == 0)
-		{
-			x = p->lena;
-		}*/
-			//sa(p);
-
-/*		else if (p->pb[p->lenb] < p->pb[0])
-			rb(p);
-		else if (p->lenb < p->lena)
-			pb(p);
-		else if (p->lenb > 0)
-			pa(p);*/
-
-		//ft_putstr_fd("\n", STDOUT);
-		i++;
-		//ft_putstr_fd("\033c", STDOUT);
-	}
-	disp_st(p);
-	free(p);
-	return (SUCCESS);
+	if (a < 0)
+		return (a * -1);
+	return (a);
 }
 
 int	main(int ac, char **av)
@@ -200,9 +114,19 @@ int	main(int ac, char **av)
 		return (err_msg("Error\n"));
 	}
 	//ft_putstr_fd("\033c", STDOUT);
-	//ft_putstr_fd("\n", STDOUT);
-	///disp_st(p);
-	//ft_putstr_fd("\n", STDOUT);
+	int	i;
 
+	i = 0;
+	p->max = 0;
+	while (i  <= p->lena)
+	{
+		if (abs(p->pa[i]) > p->max)
+			p->max = abs(p->pa[i]);
+		i++;
+	}
+	p->max += 10;
+	//disp_st(p);
+	//ft_putstr_fd("\n", STDOUT);
+	//return (0);
 	return (loop(p));
 }

@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 16:32:30 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:07:08 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	fill_pile(int ac, char **av, t_p *p)
 		e++;
 		i--;
 	}
-	i = -1;
+/*	i = -1;
 	while (++i < ac - 1)
 		printf("a = [%d] \n", p->pa[i]);
-	printf("\n");
+	printf("\n");*/
 	return (SUCCESS);
 }
 
@@ -92,12 +92,12 @@ int	loop(t_p *p)
 	while (1)
 	{
 		get_next_line(0, &cmd);
-		if (cmd[0] >= 0)
+		if (cmd[0] <= 0)
 		{
 			if (is_sort(p) == ERROR)
 				return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
 			else
-				return (ft_putstr_fd_ret("OK\n", STDOUT, ERROR));
+				return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
 		}
 		if (find_cmd(cmd, p) == ERROR)
 		{
@@ -106,12 +106,19 @@ int	loop(t_p *p)
 			return (ERROR);
 		}
 		//ft_putstr_fd("\033c", STDOUT);
-		//disp_st(p);
+		//disp_st(p, "o");
 		ffree(cmd);
 	}
-	//disp_st(p);
+	//disp_st(p, "o");
 	free(p);
 	return (SUCCESS);
+}
+
+int abs(int a)
+{
+	if (a < 0)
+		return (a * -1);
+	return (a);
 }
 
 int	main(int ac, char **av)
@@ -131,6 +138,17 @@ int	main(int ac, char **av)
 		return (err_msg("Error\n"));
 	}
 	//ft_putstr_fd("\033c", STDOUT);
-	//disp_st(p);
+	int	i;
+
+	i = 0;
+	p->max = 0;
+	while (i  <= p->lena)
+	{
+		if (abs(p->pa[i]) > p->max)
+			p->max = abs(p->pa[i]);
+		i++;
+	}
+	p->max += 10;
+	//disp_st(p, "bef");
 	return (loop(p));
 }
