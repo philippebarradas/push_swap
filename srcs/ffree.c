@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ffree.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/20 11:28:44 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:52:48 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,25 @@ void	free_all(t_p *p)
 	free(p);
 }
 
-void	disp_st( t_p *p, char *str)
+void	disp_st( t_p *p)
 {
 	int	i;
 	int	max;
 	int e = 0;
-
-	ft_putstr_fd(str, STDOUT);
+	//return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
 		max = p->lenb;
 	int r = max;
+	ft_putstr_fd("\033c", STDOUT);
+	ft_putstr_fd("\n\n", STDOUT);
+
 	while (max >= 0)
 	{
 		if (p->lena >= max)
 		{
+			ft_putnbr_fd(p->pa[max], STDOUT);
 			while (++e <= p->pa[max] && p->pa[max] > 0)
 				ft_putstr_fd("+", STDOUT);
 			while (--e >= p->pa[max] && p->pa[max] < 0)
@@ -61,6 +64,7 @@ void	disp_st( t_p *p, char *str)
 		e = 0;
 		if (p->lenb >= max)
 		{
+			ft_putnbr_fd(p->pa[max], STDOUT);
 			while (++e <= p->pb[max])
 				ft_putstr_fd("+", STDOUT);
 			while (--e >= p->pb[max] && p->pb[max] < 0)
@@ -73,12 +77,13 @@ void	disp_st( t_p *p, char *str)
 		printf("\n");
 		max--;
 	}
-	usleep(20000);
+	usleep(40000);
 	printf("\n\n");
 }
 
-void	rrr(t_p *p)
+void	rrr(t_p *p, int x)
 {
-	rra(p);
-	rrb(p);
+	rra(p, 1);
+	rrb(p, 1);
+	ft_putstr_fd_count("rrr\n", STDOUT, p);
 }

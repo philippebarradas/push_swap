@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/20 17:07:08 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/21 11:28:22 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int	is_sort(t_p *p)
 int	loop(t_p *p)
 {
 	char	*cmd;
-
+	//	ft_putstr_fd("\033c", STDOUT);
+		//disp_st(p, "o");
 	while (1)
 	{
 		get_next_line(0, &cmd);
@@ -105,8 +106,8 @@ int	loop(t_p *p)
 			free(cmd);
 			return (ERROR);
 		}
-		//ft_putstr_fd("\033c", STDOUT);
-		//disp_st(p, "o");
+	//	ft_putstr_fd("\033c", STDOUT);
+	//	disp_st(p, "o");
 		ffree(cmd);
 	}
 	//disp_st(p, "o");

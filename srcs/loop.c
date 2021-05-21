@@ -3,260 +3,180 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/20 17:35:15 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/21 20:33:15 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "includes/push.h"
 
-int	pa_is_trim(t_p *p)
+void	first_algo(t_p *p)
 {
-	int	i;
+	if (((p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])) &&
+	((p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])))
+		rrr(p, 1);
+ 	else if (p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])
+		rra(p, 0);
+ 	else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
+		rrb(p, 0);
+			
+	if ((p->lenb >= 1 && p->pb[p->lenb] < p->pb[0]) &&
+	(p->lena >= 1 && p->pa[p->lena] > p->pa[0]))
+		rr(p, 1);
+	else if (p->lena >= 1 && p->pa[p->lena] > p->pa[0])
+		ra(p, 0);
+	else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[0])
+		rb(p, 0);
+			
+	if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
+	(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
+		ss(p, 1);
+	else if(p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])
+		sa(p, 0);
+	else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
+		sb(p, 0);
+			
+	if (pa_is_trim(p) == ERROR)
+		pb(p, 0);
+	else if (pa_is_trim(p) == SUCCESS && p->lenb > -1 && p->lena != -1 && is_sort(p) == ERROR)
+		pa(p, 0);
+}
 
-	i = 0;
-	while (i + 1 <= p->lena)
+int median_algo(int r, int med, t_p *p)
+{
+	int v = 0;
+	while (r <= med && is_sort(p) == ERROR && pa_is_trim(p) == ERROR)
 	{
-		if (p->pa[i] < p->pa[i + 1])
+		if (((p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])) &&
+		((p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])))
+			rrr(p, 1);
+		else if (p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])
+			rra(p, 0);
+ 		else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
+			rrb(p, 0);
+		
+		if ((p->lenb >= 1 && p->pb[p->lenb] < p->pb[0]) &&
+		(p->lena >= 1 && p->pa[p->lena] > p->pa[0]))
+			rr(p, 1);
+		else if (p->lena >= 1 && p->pa[p->lena] > p->pa[0])
+			ra(p, 0);
+		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[0])
+			rb(p, 0);
+		
+		if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
+		(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
+			ss(p, 1);
+ 		else if(p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])
+			sa(p, 0);
+		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
+			sb(p, 0);
+		
+		pb(p, 0);	 		
+	}
+	return (r);
+}
+
+void 	sort_indiv(t_p *p)
+{
+		if ((p->lenb >= 1 && p->pb[p->lenb] < p->pb[0]) &&
+		(p->lena >= 1 && p->pa[p->lena] > p->pa[0]))
+			rr(p, 1);
+		else if (p->lena >= 1 && p->pa[p->lena] > p->pa[0])
+			ra(p, 0);
+		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[0])
+			rb(p, 0);
+		else if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
+		(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
+			ss(p, 1);
+		else if(p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])
+			sa(p, 0);
+		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
+			sb(p, 0);
+		else if (((p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])) &&
+		((p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])))
+			rrr(p, 1);
+ 		else if (p->lena >= 1 && p->pa[0] < p->pa[p->lena] && p->pa[0] < p->pa[p->lena - 1])
+			rra(p, 0);
+ 		else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
+			rrb(p, 0);
+		
+		if (pa_is_trim(p) != SUCCESS && p->lena >= 0 && p->pa[p->lena] > p->pb[p->lenb])
+			pb(p, 0);
+		else if (pb_is_trim(p) != SUCCESS && p->lenb >= 0 && p->pa[p->lena] < p->pb[p->lenb])
+			pa(p, 0);
+		else if (pa_is_trim(p) == SUCCESS && is_sort(p) == ERROR)
+			pa(p, 0);
+		else if (pb_is_trim(p) == SUCCESS && is_sort(p) == ERROR)
+			pb(p, 0);
+}
+
+int	min_is_in_pa(t_p *p, int min)
+{
+	int	r;
+
+	r = 0;
+	while (r <= p->lena)
+	{
+		if (min == p->pa[r])
 		{
-			return (ERROR);
+			printf("min = [%d]\n", p->pa[r]);
+			return (SUCCESS);
 		}
-		i++;
+		r++;
 	}
-	return (SUCCESS);
+	return (ERROR);
 }
 
-int	pb_top_is_min(t_p *p)
+int find_val_med(t_p *p)
 {
-	int	i;
+	int i;
+	int max;
+	int min;
+	int e = 0;
 
-	i = 0;
-    if (p->lenb == -1)
-        return (ERROR);
-	while (i <= p->lenb)
-	{
-		if (p->pb[p->lenb] > p->pb[i])
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	pa_top_is_max(t_p *p)
-{
-	int	i;
-
+	max = p->pa[i];
+	min = p->pa[i];
 	i = 0;
 	while (i <= p->lena)
 	{
-		if (p->pb[0] < p->pa[i])
-			return (ERROR);
+		printf("[%d]\n", p->pa[i]);
+		if (p->pa[i] > max)
+			max = p->pa[i];
+		if (p->pa[i] < min)
+			min = p->pa[i];
 		i++;
 	}
-	return (SUCCESS);
-}
-
-void	swap(t_p *p)
-{
-	if (p->pa[p->lena] > p->pa[p->lena - 1] && p->pb[p->lenb] < p->pb[p->lenb - 1]
-		&& p->lena >= 1 && p->lenb >= 1)
+	printf("max = [%d] min = [%d]\n", max, min);
+	while (e < ((p->lena) / 2) && min < max)
 	{
-		ss(p);
-		disp_st(p, "ss\n");
+		if (min_is_in_pa(p, min) == SUCCESS)
+			e++;
+		min++;
 	}
-	else if (p->pa[p->lena] > p->pa[p->lena - 1] && p->lena >= 1)
-	{
-		sa(p);
-		disp_st(p, "sa\n");
-	}
-	else if (p->pb[p->lenb] < p->pb[p->lenb - 1] && p->lenb >= 1)
-	{
-		sb(p);
-		disp_st(p, "sb\n");
-	}
-}
-
-/*int		top_biggest_in_a(t_p *p)
-{
-
-}*/
-
-void	rotate(t_p *p)
-{
-	if (p->pa[p->lena] < p->pa[p->lena - 1] && pa_is_trim(p) == ERROR)
-	{
-		pb(p);
-		disp_st(p, "pb\n");
-	}
-	else if ((p->pa[p->lena] > p->pb[p->lenb] ||
-	p->pa[p->lena - 1] > p->pb[p->lenb])&& p->lena != -1 && p->lenb != -1)
-	{
-		pa(p);
-		disp_st(p, "pa\n");
-	}
+	printf("res = [%d] ned = [%d]\n", min, ((p->lena) / 2));
+	return (min);
 }
 
 int	loop(t_p *p)
 {
 	char	*cmd;
-	int	x;
-	int y;
-	int i;
 
-	i = 0;
-	x = p->lena;
-	y = 0;
-	int e;
-	e = 0;
-	//disp_st(p, "start\n");
+	int r = 0;
+	int med = ((p->lena + 1) / 2);
+	int val_mec = find_val_med(p);
+	//disp_st(p);
 	while (is_sort(p) == ERROR)
 	{
-		//swap
-		if ((p->pa[p->lena] > p->pa[0] && p->pa[0] < p->pa[p->lena - 1]&& p->lena >= 1) &&
-		((pb_top_is_min(p) == SUCCESS && p->lenb >= 1)))
-		{
-			rr(p);
-			ft_putstr_fd("rr\n", STDOUT);
-		}
-		else if (p->pa[p->lena] > p->pa[0] && p->pa[0] < p->pa[p->lena - 1]&& p->lena >= 1)
-		{
-			ra(p);
-			ft_putstr_fd("ra\n", STDOUT);
-		}
-		else if (pb_top_is_min(p) == SUCCESS && p->lenb >= 1)
-		{
-			rb(p);
-			ft_putstr_fd("rb\n", STDOUT);
-		}
-		else if (  (p->pb[p->lenb] < p->pb[p->lenb - 1] && p->lenb >= 1) &&  ((p->pa[p->lena] > p->pa[p->lena - 1] && p->pa[0] > p->pa[p->lena - 1] && p->lena >= 1)
-		|| (p->pa[p->lena] > p->pa[p->lena - 1] && p->lena == 1))  )
-		{
-			ss(p);
-			ft_putstr_fd("ss\n", STDOUT);
-		}
-		else if (p->pb[p->lenb] < p->pb[p->lenb - 1] && p->lenb >= 1)
-		{
-			sb(p);
-			ft_putstr_fd("sb\n", STDOUT);
-		}
-		else if ((p->pa[p->lena] > p->pa[p->lena - 1] && p->pa[0] > p->pa[p->lena - 1] && p->lena >= 1)
-		|| (p->pa[p->lena] > p->pa[p->lena - 1] && p->lena == 1))
-		{
-			sa(p);
-			ft_putstr_fd("sa\n", STDOUT);
-		}
-		else if (p->pa[p->lena] > p->pa[p->lena - 1] && p->pa[0] < p->pa[p->lena - 1] && p->lena >= 1)
-		{
-			rra(p);
-			ft_putstr_fd("rra\n", STDOUT);
-		}
-		else if (p->pa[p->lena] < p->pa[p->lena - 1] && pa_is_trim(p) == ERROR)
-		{
-			pb(p);
-			ft_putstr_fd("pb\n", STDOUT);
-		}
-		else if (pa_is_trim(p) == SUCCESS && p->lenb != -1 && is_sort(p) == ERROR)
-		{
-			pa(p);
-			ft_putstr_fd("pa\n", STDOUT);
-		}
-		else if ((p->pa[p->lena] > p->pb[p->lenb] ||
-		p->pa[p->lena - 1] > p->pb[p->lenb])&& p->lena != -1 && p->lenb != -1 && is_sort(p) == ERROR)
-		{
-			pa(p);
-			ft_putstr_fd("pa\n", STDOUT);
-		}
-/*		rotate(p);
-		//printf("v = [%d]\n", pb_top_is_min(p));
-		if (pb_top_is_min(p) == SUCCESS && p->lenb >= 1)
-		{
-			rb(p);
-			ft_putstr_fd("rb\n", STDOUT);
-		}
-		if (pa_top_is_max(p) == SUCCESS && p->lena >= 1)
-		{
-			ra(p);
-			ft_putstr_fd("ra\n", STDOUT);
-		}
-		swap(p);*/
-
-
-		//ft_putstr_fd("PAUSE\n", STDOUT);
-		//i++;
-
+		//	if (r >= 0)
+		//	r = median_algo(r, med, p);
+		//sort_indiv(p);
+		//first_algo(p);
+	
 	}
-	//disp_st(p, "fin\n");
-	//printf("\ni = [%d]\n\n", i);
+	 
+	printf("i = [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);
 }
-
-
-/*	while (is_sort(p) == ERROR)
-	{
-		//swap
-		if (p->pa[p->lena] > p->pa[0] && p->pa[0] < p->pa[p->lena - 1]&& p->lena >= 1)
-		{
-			ra(p);
-			ft_putstr_fd("ra\n", STDOUT);
-		}
-		else if (pb_top_is_min(p) == SUCCESS && p->lenb >= 1)
-		{
-			rb(p);
-			ft_putstr_fd("rb\n", STDOUT);
-		}
-		else if (p->pb[p->lenb] < p->pb[p->lenb - 1] && p->lenb >= 1)
-		{
-			sb(p);
-			ft_putstr_fd("sb\n", STDOUT);
-		}
-		else if ((p->pa[p->lena] > p->pa[p->lena - 1] && p->pa[0] > p->pa[p->lena - 1] && p->lena >= 1)
-		|| (p->pa[p->lena] > p->pa[p->lena - 1] && p->lena == 1))
-		{
-			sa(p);
-			ft_putstr_fd("sa\n", STDOUT);
-
-		}
-		else if (p->pa[p->lena] > p->pa[p->lena - 1] && p->pa[0] < p->pa[p->lena - 1] && p->lena >= 1)
-		{
-			rra(p);
-			ft_putstr_fd("rra\n", STDOUT);
-		}
-		else if (p->pa[p->lena] < p->pa[p->lena - 1] && pa_is_trim(p) == ERROR)
-		{
-			pb(p);
-			ft_putstr_fd("pb\n", STDOUT);
-		}
-		else if (pa_is_trim(p) == SUCCESS && p->lenb != -1 && is_sort(p) == ERROR)
-		{
-			pa(p);
-			ft_putstr_fd("pa\n", STDOUT);
-		}
-		else if ((p->pa[p->lena] > p->pb[p->lenb] ||
-		p->pa[p->lena - 1] > p->pb[p->lenb])&& p->lena != -1 && p->lenb != -1 && is_sort(p) == ERROR)
-		{
-			pa(p);
-			ft_putstr_fd("pa\n", STDOUT);
-		}
-		rotate(p);
-		//printf("v = [%d]\n", pb_top_is_min(p));
-		if (pb_top_is_min(p) == SUCCESS && p->lenb >= 1)
-		{
-			rb(p);
-			ft_putstr_fd("rb\n", STDOUT);
-		}
-		if (pa_top_is_max(p) == SUCCESS && p->lena >= 1)
-		{
-			ra(p);
-			ft_putstr_fd("ra\n", STDOUT);
-		}
-		swap(p);
-
-
-		//ft_putstr_fd("PAUSE\n", STDOUT);
-		i++;
-
-	}*/

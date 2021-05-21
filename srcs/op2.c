@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   op2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:42 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 14:41:09 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/21 17:21:56 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
 
-void	ra(t_p *p)
+void	ra(t_p *p, int x)
 {
 	int	tmp;
 	int	i;
@@ -27,10 +27,12 @@ void	ra(t_p *p)
 			i--;
 		}
 		p->pa[0] = tmp;
+		if (x == 0)
+			ft_putstr_fd_count("ra\n", STDOUT, p);
 	}
 }
 
-void	rb(t_p *p)
+void	rb(t_p *p, int x)
 {
 	int	tmp;
 	int	i;
@@ -45,16 +47,19 @@ void	rb(t_p *p)
 			i--;
 		}
 		p->pb[0] = tmp;
+		if (x == 0)
+			ft_putstr_fd_count("rb\n", STDOUT, p);
 	}
 }
 
-void	rr(t_p *p)
+void	rr(t_p *p, int x)
 {
-	ra(p);
-	rb(p);
+	ra(p, 1);
+	rb(p, 1);
+	ft_putstr_fd_count("rr\n", STDOUT, p);
 }
 
-void	rra(t_p *p)
+void	rra(t_p *p, int x)
 {
 	int	tmp;
 	int	i;
@@ -69,10 +74,12 @@ void	rra(t_p *p)
 			i++;
 		}
 		p->pa[p->lena] = tmp;
+		if (x == 0)
+			ft_putstr_fd_count("rra\n", STDOUT, p);
 	}
 }
 
-void	rrb(t_p *p)
+void	rrb(t_p *p, int x)
 {
 	int	tmp;
 	int	i;
@@ -87,5 +94,7 @@ void	rrb(t_p *p)
 			i++;
 		}
 		p->pb[p->lenb] = tmp;
+		if (x == 0)
+			ft_putstr_fd_count("rrb\n", STDOUT, p);
 	}
 }

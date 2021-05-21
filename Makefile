@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+         #
+#    By: philippe <philippe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 09:51:11 by phbarrad          #+#    #+#              #
-#    Updated: 2021/05/20 13:12:16 by phbarrad         ###   ########.fr        #
+#    Updated: 2021/05/21 19:13:12 by philippe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ NAMEC			= ${BLUE}${BOLD}$(NAME)${END}
 #                            Source Files                            #
 ######################################################################
 
-SRCS			= main.c error.c op.c op2.c ffree.c loop.c
+SRCS			= main.c error.c op.c op2.c ffree.c loop.c short_loop.c tool_loop.c
 
 SRC				= $(addprefix srcs/, $(SRCS))
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/20 16:34:53 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:51:54 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	fill_pile(int ac, char **av, t_p *p)
 	return (SUCCESS);
 }
 
-int	find_cmd(char *cmd, t_p *p)
+/* int	find_cmd(char *cmd, t_p *p)
 {
 	if (ft_strcmp(cmd, "sa") == 0)
 		sa(p);
@@ -67,7 +67,7 @@ int	find_cmd(char *cmd, t_p *p)
 	else
 		return (ERROR);
 	return (SUCCESS);
-}
+} */
 
 int	is_sort(t_p *p)
 {
@@ -97,6 +97,17 @@ int abs(int a)
 	return (a);
 }
 
+void	ft_putstr_fd_count(char *s, int fd, t_p *p)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		write(fd, &(s[i]), 1);
+	p->count++;
+	disp_st(p);
+}
+
 int	main(int ac, char **av)
 {
 	t_p	*p;
@@ -113,6 +124,7 @@ int	main(int ac, char **av)
 		free(p);
 		return (err_msg("Error\n"));
 	}
+	p->count = 0;
 	//ft_putstr_fd("\033c", STDOUT);
 	int	i;
 
@@ -128,5 +140,7 @@ int	main(int ac, char **av)
 	//disp_st(p);
 	//ft_putstr_fd("\n", STDOUT);
 	//return (0);
+	if (p->lena < 5)
+		return (short_loop(p));
 	return (loop(p));
 }
