@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 19:12:23 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/21 22:15:07 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,19 @@ typedef struct s_p
 
 }				t_p;
 
+//tool
+
+int find_val_med(t_p *p);
 int	pa_top_is_max(t_p *p);
 int	pb_top_is_min(t_p *p);
 int	pb_is_trim(t_p *p);
 int	pa_is_trim(t_p *p);
+
+int	min_is_in_pa(t_p *p, int min);
+int	no_val_med_in_a(t_p *p, int val_med);
+int	no_val_med_in_b(t_p *p, int val_med);
+
+int find_val_med_in_b(t_p *p);
 
 int			is_sort(t_p *p);
 int			loop(t_p *p);

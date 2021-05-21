@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 19:51:54 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/21 21:25:00 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int	main(int ac, char **av)
 	//disp_st(p);
 	//ft_putstr_fd("\n", STDOUT);
 	//return (0);
-	if (p->lena < 5)
-		return (short_loop(p));
+	//if (p->lena < 5)
+	//	return (short_loop(p));
 	return (loop(p));
 }

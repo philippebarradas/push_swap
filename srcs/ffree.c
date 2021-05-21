@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 19:52:48 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/21 23:33:54 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,28 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	//return ;
+	return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
 		max = p->lenb;
 	int r = max;
-	ft_putstr_fd("\033c", STDOUT);
+	//ft_putstr_fd("\033c", STDOUT);
 	ft_putstr_fd("\n\n", STDOUT);
 
 	while (max >= 0)
 	{
 		if (p->lena >= max)
 		{
-			ft_putnbr_fd(p->pa[max], STDOUT);
 			while (++e <= p->pa[max] && p->pa[max] > 0)
 				ft_putstr_fd("+", STDOUT);
 			while (--e >= p->pa[max] && p->pa[max] < 0)
 				ft_putstr_fd("-", STDOUT);
 			if (e < 0)
 				e = e * -1;
+			ft_putstr_fd(" ", STDOUT);
+			ft_putnbr_fd(p->pa[max], STDOUT);
+
 		}
 		else
 		{
@@ -64,20 +66,20 @@ void	disp_st( t_p *p)
 		e = 0;
 		if (p->lenb >= max)
 		{
-			ft_putnbr_fd(p->pa[max], STDOUT);
 			while (++e <= p->pb[max])
 				ft_putstr_fd("+", STDOUT);
 			while (--e >= p->pb[max] && p->pb[max] < 0)
 				ft_putstr_fd("-", STDOUT);
 			e = 0;
-			//printf("               b = [%d]", p->pb[max]);
+			ft_putstr_fd(" ", STDOUT);
+			ft_putnbr_fd(p->pb[max], STDOUT);
 		}
 		else
 			ft_putstr_fd("o", STDOUT);
 		printf("\n");
 		max--;
 	}
-	usleep(40000);
+	usleep(20000);
 	printf("\n\n");
 }
 

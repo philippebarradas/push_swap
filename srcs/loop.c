@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 20:33:15 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/21 23:33:12 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,51 +112,40 @@ void 	sort_indiv(t_p *p)
 			pb(p, 0);
 }
 
-int	min_is_in_pa(t_p *p, int min)
+void	bef_val_med_in_a(t_p *p)
 {
-	int	r;
+	int val_med;
 
-	r = 0;
-	while (r <= p->lena)
+	val_med = find_val_med(p);
+	while (pa_is_trim(p) == ERROR)
 	{
-		if (min == p->pa[r])
-		{
-			printf("min = [%d]\n", p->pa[r]);
-			return (SUCCESS);
-		}
-		r++;
+		if (p->pa[p->lena] <= val_med)
+			pb(p, 0);
+		else if (p->pa[0] <= val_med)
+			rra(p, 0);
+		else
+			ra(p, 0);
+		if (no_val_med_in_a(p, val_med) != SUCCESS)
+			val_med = find_val_med(p);
 	}
-	return (ERROR);
 }
 
-int find_val_med(t_p *p)
+void	bef_val_med_in_b(t_p *p)
 {
-	int i;
-	int max;
-	int min;
-	int e = 0;
+	int val_med;
 
-	max = p->pa[i];
-	min = p->pa[i];
-	i = 0;
-	while (i <= p->lena)
+	val_med = find_val_med_in_b(p);
+	while (pb_is_trim(p) == ERROR)
 	{
-		printf("[%d]\n", p->pa[i]);
-		if (p->pa[i] > max)
-			max = p->pa[i];
-		if (p->pa[i] < min)
-			min = p->pa[i];
-		i++;
+		if (p->pb[p->lenb] > val_med)
+			pa(p, 0);
+		else if (p->pb[0] > val_med)
+			rrb(p, 0);
+		else
+			rb(p, 0);
+		if (no_val_med_in_b(p, val_med) != SUCCESS)
+			val_med = find_val_med_in_b(p);
 	}
-	printf("max = [%d] min = [%d]\n", max, min);
-	while (e < ((p->lena) / 2) && min < max)
-	{
-		if (min_is_in_pa(p, min) == SUCCESS)
-			e++;
-		min++;
-	}
-	printf("res = [%d] ned = [%d]\n", min, ((p->lena) / 2));
-	return (min);
 }
 
 int	loop(t_p *p)
@@ -165,18 +154,38 @@ int	loop(t_p *p)
 
 	int r = 0;
 	int med = ((p->lena + 1) / 2);
-	int val_mec = find_val_med(p);
+	int val_med = find_val_med(p);
 	//disp_st(p);
 	while (is_sort(p) == ERROR)
 	{
+		//printf("[%d][%d]\n", pa_is_trim(p));
+		if (pa_is_trim(p) == ERROR && p->lena != -1)
+			bef_val_med_in_a(p);
+		sort_indiv(p);
+
+		if (pb_is_trim(p) == ERROR && p->lenb != -1)
+			bef_val_med_in_b(p);
+		sort_indiv(p);
+
+		if (pb_is_trim(p) != ERROR && pa_is_trim(p) != ERROR
+		&& p->lenb != -1 && p->lena != -1)
+			pa(p, 0);
+		//}
+		//else
+		sort_indiv(p);
+
+	} 
+/* 	while (is_sort(p) == ERROR)
+	{	
+ 		
 		//	if (r >= 0)
 		//	r = median_algo(r, med, p);
-		//sort_indiv(p);
+		sort_indiv(p);
 		//first_algo(p);
 	
-	}
+	} */
 	 
-	printf("i = [%d]\n", p->count);
+	//printf("i = [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);
 }
