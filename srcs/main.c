@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 21:25:00 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 16:24:26 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,34 @@ void	ft_putstr_fd_count(char *s, int fd, t_p *p)
 	disp_st(p);
 }
 
+int	loop_t_arg(t_p *p)
+{
+	int a;
+	int b;
+	int c;
+
+	a = p->pa[2];
+	b = p->pa[1];
+	c = p->pa[0];
+	if (a < b && b > c && a < c)
+	{
+		rra(p, 0);
+		sa(p, 0);
+	}
+	else if (a < b && b > a && a > c)
+		rra(p, 0);
+	else if (a > b && b < c && c > a)
+		sa(p, 0);
+	else if (a > b && b < c && a > c)
+		ra(p, 0);
+	else if (a > b && b > c && a > c)
+	{
+		ra(p, 0);
+		sa(p, 0);
+	}
+	return (SUCCESS);
+}
+
 int	main(int ac, char **av)
 {
 	t_p	*p;
@@ -140,7 +168,9 @@ int	main(int ac, char **av)
 	//disp_st(p);
 	//ft_putstr_fd("\n", STDOUT);
 	//return (0);
-	//if (p->lena < 5)
-	//	return (short_loop(p));
-	return (loop(p));
+	if (p->lena < 3)
+		return (loop_t_arg(p));
+	if (p->lena < 10)
+		return (loop(p));
+	return (long_loop(p));
 }

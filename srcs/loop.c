@@ -6,12 +6,12 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 12:29:13 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 16:27:34 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
-
+/* 
 void	first_algo(t_p *p)
 {
 	if (((p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])) &&
@@ -111,7 +111,7 @@ void 	sort_indiv(t_p *p)
 		else if (pb_is_trim(p) == SUCCESS && is_sort(p) == ERROR)
 			pb(p, 0);
 }
-
+ */
 void	sswap(t_p *p)
 {
 	if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&

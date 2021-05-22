@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 22:15:07 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 13:20:30 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_p
 	int			max;
 	int			count;
 
+	int			med;
+
 }				t_p;
 
 //tool
@@ -53,6 +55,8 @@ int find_val_med_in_b(t_p *p);
 
 int			is_sort(t_p *p);
 int			loop(t_p *p);
+int			long_loop(t_p *p);
+
 
 
 int			err_msg(char *str);

@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 09:19:41 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 16:36:36 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	pb_is_trim(t_p *p)
 	i = 0;
 	while (i + 1 <= p->lenb)
 	{
+		//printf("[%d] > [%d]\n", p->pb[i], p->pb[i + 1]);
 		if (p->pb[i] > p->pb[i + 1])
 		{
 			return (ERROR);
