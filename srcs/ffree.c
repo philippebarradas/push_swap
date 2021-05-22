@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 23:33:54 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 11:49:37 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	disp_st( t_p *p)
 		printf("\n");
 		max--;
 	}
-	usleep(20000);
+	usleep(80000);
 	printf("\n\n");
 }
 

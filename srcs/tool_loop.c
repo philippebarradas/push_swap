@@ -6,7 +6,7 @@
 /*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 23:31:09 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/22 09:19:41 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	no_val_med_in_a(t_p *p, int val_med)
 	int	i;
 
 	i = 0;
-	while (i < p->lena)
+	while (i <= p->lena)
 	{
 		if (p->pa[i] < val_med)
 			return (ERROR);
@@ -96,7 +96,7 @@ int	no_val_med_in_b(t_p *p, int val_med)
 	i = 0;
 	while (i <= p->lenb)
 	{
-		if (p->pb[i] > val_med)
+		if (p->pb[i] >= val_med)
 			return (ERROR);
 		i++;
 	}
