@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 16:27:34 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/23 09:48:00 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
-/* 
+/*
 void	first_algo(t_p *p)
 {
 	if (((p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])) &&
@@ -21,7 +21,7 @@ void	first_algo(t_p *p)
 		rra(p, 0);
  	else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
 		rrb(p, 0);
-			
+
 	if ((p->lenb >= 1 && p->pb[p->lenb] < p->pb[0]) &&
 	(p->lena >= 1 && p->pa[p->lena] > p->pa[0]))
 		rr(p, 1);
@@ -29,7 +29,7 @@ void	first_algo(t_p *p)
 		ra(p, 0);
 	else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[0])
 		rb(p, 0);
-			
+
 	if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
 	(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
 		ss(p, 1);
@@ -37,7 +37,7 @@ void	first_algo(t_p *p)
 		sa(p, 0);
 	else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
 		sb(p, 0);
-			
+
 	if (pa_is_trim(p) == ERROR)
 		pb(p, 0);
 	else if (pa_is_trim(p) == SUCCESS && p->lenb > -1 && p->lena != -1 && is_sort(p) == ERROR)
@@ -56,7 +56,7 @@ int median_algo(int r, int med, t_p *p)
 			rra(p, 0);
  		else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
 			rrb(p, 0);
-		
+
 		if ((p->lenb >= 1 && p->pb[p->lenb] < p->pb[0]) &&
 		(p->lena >= 1 && p->pa[p->lena] > p->pa[0]))
 			rr(p, 1);
@@ -64,7 +64,7 @@ int median_algo(int r, int med, t_p *p)
 			ra(p, 0);
 		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[0])
 			rb(p, 0);
-		
+
 		if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
 		(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
 			ss(p, 1);
@@ -72,8 +72,8 @@ int median_algo(int r, int med, t_p *p)
 			sa(p, 0);
 		else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
 			sb(p, 0);
-		
-		pb(p, 0);	 		
+
+		pb(p, 0);
 	}
 	return (r);
 }
@@ -101,7 +101,7 @@ void 	sort_indiv(t_p *p)
 			rra(p, 0);
  		else if (p->lenb >= 1 && p->pb[0] > p->pa[p->lenb] && p->pa[0] > p->pa[p->lenb - 1])
 			rrb(p, 0);
-		
+
 		if (pa_is_trim(p) != SUCCESS && p->lena >= 0 && p->pa[p->lena] > p->pb[p->lenb])
 			pb(p, 0);
 		else if (pb_is_trim(p) != SUCCESS && p->lenb >= 0 && p->pa[p->lena] < p->pb[p->lenb])
@@ -147,11 +147,11 @@ int	all_cmd_both(t_p *p)
 {
 
 	if (  (p->pa[0] < find_val_med(p)) && (p->pb[0] >= find_val_med_in_b(p)) )
-		rrr(p, 1);	
+		rrr(p, 1);
 	else if ( !(p->pa[0] < find_val_med(p))  && !(p->pb[0] >= find_val_med_in_b(p)) )
 		rr(p, 1);
 	else
-		return (ERROR);	
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -223,7 +223,7 @@ int	loop(t_p *p)
 			bef_val_med_in_b(p);
 		else
 			pa(p, 0);
-		
+
 		//sort_indiv(p);
 
 		//if (pb_is_trim(p) != ERROR && pa_is_trim(p) != ERROR
@@ -233,17 +233,17 @@ int	loop(t_p *p)
 		//else
 		//sort_indiv(p);
 
-	} 
+	}
 /* 	while (is_sort(p) == ERROR)
-	{	
- 		
+	{
+
 		//	if (r >= 0)
 		//	r = median_algo(r, med, p);
 		sort_indiv(p);
 		//first_algo(p);
-	
+
 	} */
-	 
+
 	//printf("i = [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);

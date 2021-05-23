@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 16:24:26 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/23 16:44:04 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,64 +33,26 @@ int	fill_pile(int ac, char **av, t_p *p)
 		e++;
 		i--;
 	}
-/*	i = -1;
-	while (++i < ac - 1)
-		printf("a = [%d] \n", p->pa[i]);
-	printf("\n");*/
 	return (SUCCESS);
 }
-
-/* int	find_cmd(char *cmd, t_p *p)
-{
-	if (ft_strcmp(cmd, "sa") == 0)
-		sa(p);
-	else if (ft_strcmp(cmd, "sb") == 0)
-		sb(p);
-	else if (ft_strcmp(cmd, "ss") == 0)
-		ss(p);
-	else if (ft_strcmp(cmd, "pa") == 0)
-		pa(p);
-	else if (ft_strcmp(cmd, "pb") == 0)
-		pb(p);
-	else if (ft_strcmp(cmd, "ra") == 0)
-		ra(p);
-	else if (ft_strcmp(cmd, "rb") == 0)
-		rb(p);
-	else if (ft_strcmp(cmd, "rr") == 0)
-		rr(p);
-	else if (ft_strcmp(cmd, "rra") == 0)
-		rra(p);
-	else if (ft_strcmp(cmd, "rrb") == 0)
-		rrb(p);
-	else if (ft_strcmp(cmd, "rrr") == 0)
-		rrr(p);
-	else
-		return (ERROR);
-	return (SUCCESS);
-} */
 
 int	is_sort(t_p *p)
 {
 	int	i;
 
 	i = 0;
-	//printf("len b = [%d]\n", p->lenb);
 	if (p->lenb != -1)
 		return (ERROR);
 	while (i + 1 <= p->lena)
 	{
 		if (p->pa[i] < p->pa[i + 1])
-		{
-			//printf("len b = [%d][%d]\n", p->pa[i], p->pa[i + 1]);
 			return (ERROR);
-		}
 		i++;
 	}
-	//printf("SORTED\n\n");
 	return (SUCCESS);
 }
 
-int abs(int a)
+int	abs(int a)
 {
 	if (a < 0)
 		return (a * -1);
@@ -110,9 +72,9 @@ void	ft_putstr_fd_count(char *s, int fd, t_p *p)
 
 int	loop_t_arg(t_p *p)
 {
-	int a;
-	int b;
-	int c;
+	int	a;
+	int	b;
+	int	c;
 
 	a = p->pa[2];
 	b = p->pa[1];
@@ -153,15 +115,19 @@ int	main(int ac, char **av)
 		return (err_msg("Error\n"));
 	}
 	p->count = 0;
-	//ft_putstr_fd("\033c", STDOUT);
 	int	i;
-
 	i = 0;
-	p->max = 0;
+	p->max = p->pa[i];
+	p->maxe = p->pa[i];
+	p->min = p->pa[i];
 	while (i  <= p->lena)
 	{
 		if (abs(p->pa[i]) > p->max)
 			p->max = abs(p->pa[i]);
+		if (p->pa[i] > p->maxe)
+			p->maxe = p->pa[i];
+		if (p->pa[i] < p->min)
+			p->min = p->pa[i];
 		i++;
 	}
 	p->max += 10;
@@ -170,7 +136,7 @@ int	main(int ac, char **av)
 	//return (0);
 	if (p->lena < 3)
 		return (loop_t_arg(p));
-	if (p->lena < 10)
-		return (loop(p));
+	//if (p->lena < 10)
+		//return (loop(p));
 	return (long_loop(p));
 }

@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:18:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/20 11:20:49 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/23 16:42:06 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct s_p
 
 	int			lena;
 	int			lenb;
-
-	int			max; //dell
 }				t_p;
 
 int			err_msg(char *str);

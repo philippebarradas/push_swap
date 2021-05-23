@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ffree.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 13:45:09 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/23 16:38:36 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	disp_st( t_p *p)
 		printf("\n");
 		max--;
 	}
-	usleep(80000);
+	usleep(20000);
 	printf("\n\n");
 }
 

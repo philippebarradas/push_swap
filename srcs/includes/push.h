@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/22 13:20:30 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:20:21 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_p
 	int			lenb;
 
 	int			max;
+
+	int			maxe;
+	int			min;
 	int			count;
 
 	int			med;
@@ -40,6 +43,9 @@ typedef struct s_p
 }				t_p;
 
 //tool
+
+int		pa_opti_fill(t_p *p);
+int		pb_opti_fill(t_p *p);
 
 int find_val_med(t_p *p);
 int	pa_top_is_max(t_p *p);
