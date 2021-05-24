@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 13:25:12 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:15:24 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,12 +215,16 @@ int	pa_opti_fill(t_p *p)
 	while (e < p->lena)
 	{
 		next = p->pa[e + 1] + 1;
+		//printf("next = [%d] < [%d] || [%d]\n", next, p->pa[e], p->maxe);
 		while (next < p->pa[e])
 		{
 			if (is_in_pill(p->pa, next) == SUCCESS
 				|| is_in_pill(p->pb, next) == SUCCESS)
 				return (ERROR);
-			next++;
+			if (p->maxe <= 0)
+				next--;
+			else
+				next++;
 		}
 		e++;
 	}
@@ -243,7 +247,10 @@ int	pb_opti_fill(t_p *p)
 			if (is_in_pill(p->pb, next) == SUCCESS
 				|| is_in_pill(p->pa, next) == SUCCESS)
 				return (ERROR);
-			next--;
+			if (p->min >= 0)
+				next++;
+			else
+				next--;
 		}
 		e++;
 	}

@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 13:21:23 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:19:57 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	return (SUCCESS);
 }
 */
-/*void	sswap2(t_p *p)
+void	sswap2(t_p *p)
 {
 	if ((p->lena >= 1 && p->pa[p->lena] > p->pa[p->lena - 1])&&
 	(p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1]))
@@ -33,7 +33,7 @@
 	else if (p->lenb >= 1 && p->pb[p->lenb] < p->pb[p->lenb - 1])
 		sb(p, 0);
 }
-*/
+
 
 int	long_loop(t_p *p)
 {
@@ -45,7 +45,7 @@ int	long_loop(t_p *p)
 	val_med_a = find_val_med(p);
 	val_med_b = find_val_med_in_b(p);
 		//printf("VM = [%d]\n", val_med);
-	while (no_val_med_in_a(p, val_med_a) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
+	while (no_val_med_in_a(p, val_med_a) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR && val_med_a >= init_med)
 	{
 			//printf("opti = [%d]\n", pa_opti_fill(p));
 		val_med_b = find_val_med_in_b(p);
@@ -59,7 +59,7 @@ int	long_loop(t_p *p)
 			val_med_a = find_val_med(p);
 		//printf("VM = [%d]\n", val_med);
 	}
-	//	printf("VM-b4 = [%d]\n\n", val_med[e]);
+	//	printf("VM- = [%d] [%d]\n\n", val_med_a, pa_opti_fill(p));
 	val_med_b = next_val_med_pb(p, val_med_a);
 	//printf("\nVM-b2 = [%d]\n", val_med[e]);
 	while (no_val_med_in_b(p, val_med_b) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR && val_med_b >= init_med)
