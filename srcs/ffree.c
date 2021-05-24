@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 10:39:28 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 13:27:57 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	//return ;
+	return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
 		max = p->lenb;
 	int r = max;
-	//ft_putstr_fd("\033c", STDOUT);
-	ft_putstr_fd("\n\n", STDOUT);
+//	ft_putstr_fd("\033c", STDOUT);
 
+	printf("\n\n");
+	printf("\n\n");
+	printf("\n\n");
 	while (max >= 0)
 	{
 		if (p->lena >= max)
@@ -79,8 +81,7 @@ void	disp_st( t_p *p)
 		printf("\n");
 		max--;
 	}
-	usleep(30000);
-	printf("\n\n");
+	usleep(60000);
 }
 
 void	rrr(t_p *p, int x)

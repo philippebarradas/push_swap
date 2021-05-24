@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 09:29:26 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 13:25:12 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	find_val_med(t_p *p)
 	}
 	if ((p->lena % 2) == 1)
 		e--;
-	while (e < ((p->lena) / 2) && min < max)
+	while (e < (p->lena / 3) && min < max)
 	{
 		if (min_is_in_pa(p, min) == SUCCESS)
 			e++;
@@ -181,7 +181,7 @@ int	find_val_med_in_b(t_p *p)
 	}
 	if ((p->lenb % 2) == 1)
 		e--;
-	while (e < ((p->lenb) / 2) && min < max)
+	while (e < (p->lenb / 3) && min < max)
 	{
 		if (min_is_in_pb(p, max) == SUCCESS)
 			e++;
