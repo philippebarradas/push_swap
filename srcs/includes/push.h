@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 08:25:51 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 10:24:20 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ typedef struct s_p
 }				t_p;
 
 //tool
+
+int	next_val_med_pb(t_p *p, int val_med);
+int	pp_g(int *pill, int len, int val_med);
+int	pp_d(int *pill, int len, int val_med);
+
+
 int	is_in_pill(int *pil, int nbr);
 
 int		pa_opti_fill(t_p *p);
