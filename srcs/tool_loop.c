@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 16:47:57 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 09:29:26 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ int	is_in_pill(int *pil, int nbr)
 	return (ERROR);
 }
 
-int		pa_opti_fill(t_p *p)
+int	pa_opti_fill(t_p *p)
 {
 	int	e;
 	int	next;
@@ -217,8 +217,8 @@ int		pa_opti_fill(t_p *p)
 		next = p->pa[e + 1] + 1;
 		while (next < p->pa[e])
 		{
-			if (is_in_pill(p->pa, next) == SUCCESS ||
-			is_in_pill(p->pb, next) == SUCCESS)
+			if (is_in_pill(p->pa, next) == SUCCESS
+				|| is_in_pill(p->pb, next) == SUCCESS)
 				return (ERROR);
 			next++;
 		}
@@ -227,7 +227,7 @@ int		pa_opti_fill(t_p *p)
 	return (SUCCESS);
 }
 
-int		pb_opti_fill(t_p *p)
+int	pb_opti_fill(t_p *p)
 {
 	int	e;
 	int	next;
@@ -240,8 +240,8 @@ int		pb_opti_fill(t_p *p)
 		next = p->pb[e + 1] - 1;
 		while (next > p->pb[e])
 		{
-			if (is_in_pill(p->pb, next) == SUCCESS ||
-				is_in_pill(p->pa, next) == SUCCESS)
+			if (is_in_pill(p->pb, next) == SUCCESS
+				|| is_in_pill(p->pa, next) == SUCCESS)
 				return (ERROR);
 			next--;
 		}

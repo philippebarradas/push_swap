@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 16:44:04 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 09:11:04 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	main(int ac, char **av)
 	//return (0);
 	if (p->lena < 3)
 		return (loop_t_arg(p));
-	//if (p->lena < 10)
-		//return (loop(p));
+	if (p->lena < 10)
+		return (loop(p));
 	return (long_loop(p));
 }

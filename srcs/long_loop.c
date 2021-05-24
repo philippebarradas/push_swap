@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 16:38:13 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/24 10:04:28 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,55 +34,244 @@ void	sswap2(t_p *p)
 		sb(p, 0);
 }
 
+int	next_val_med_pb(t_p *p, int val_med)
+{
+	int e;
+
+	e = 0;
+	while (val_med >= p->min)
+	{
+		//printf("VM-b1 = [%d]\n", val_med);
+		while (e <= p->lenb)
+		{
+			if (val_med == p->pb[e])
+				return (val_med);
+			e++;
+		}
+		e = 0;
+		val_med--;
+	}
+	return (val_med);
+}
+
+int	pp_g(int *pill, int len, int val_med)
+{
+	int i;
+
+	i = 0;
+	while (i <= len)
+	{
+		if (pill[i] == val_med)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+int	pp_d(int *pill, int len, int val_med)
+{
+	int i;
+
+	i = 0;
+	while (len - i > 0)
+	{
+		if (pill[len - i] == val_med)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
 void	bef_val_med_in_a2(t_p *p)
 {
-	int	val_med;
-
-	val_med = find_val_med(p);
+	int e;
+	int	*val_med = malloc(sizeof(int) * 16);
+	int i = 0;
+	int init_med = find_val_med(p);
+	//val_med[0] = find_val_med(p);
 	//printf("VM = [%d]\n", val_med);
-	while (is_sort(p) == ERROR)
-	{
+	//while (is_sort(p) == ERROR)
+	//{
 		//all_cmd_both(p);
-		sswap2(p);
-		val_med = find_val_med(p);
+		//sswap2(p);
+		val_med[i] = find_val_med(p);
 		//printf("VM = [%d]\n", val_med);
-		while (no_val_med_in_a(p, val_med) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
+		while (no_val_med_in_a(p, val_med[i]) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
 		{
 			//printf("opti = [%d]\n", pa_opti_fill(p));
-			if (p->pa[p->lena] < val_med)
+			if (p->pa[p->lena] < val_med[i])
 				pb(p, 0);
-			else if (p->pa[0] < val_med)
+			else if (p->pa[0] < val_med[i])
 				rra(p, 0);
 			else
 				ra(p, 0);
-			if (no_val_med_in_a(p, val_med) == SUCCESS)
-				val_med = find_val_med(p);
+			if (no_val_med_in_a(p, val_med[i]) == SUCCESS)
+			{
+				i++;
+				val_med[i] = find_val_med(p);
+			}
 			//printf("VM = [%d]\n", val_med);
-			sswap2(p);
-
 		}
-		//printf("opt[%d]\n",pa_opti_fill(p));
-		val_med = find_val_med_in_b(p);
-		//printf("VM-b = [%d]\n", val_med);
-		sswap2(p);
 
-		while (no_val_med_in_b(p, val_med) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR)
+
+		e = i - 1;
+
+
+
+	//	printf("VM-b4 = [%d]\n\n", val_med[e]);
+		val_med[e] = next_val_med_pb(p, val_med[e]);
+		//printf("\nVM-b2 = [%d]\n", val_med[e]);
+
+		while (no_val_med_in_b(p, val_med[e]) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR && val_med[e] >= init_med)
 		{
-			//printf("VM-b = [%d]\n", val_med);
-
-			if (p->pb[p->lenb] >= val_med)
+			//sswap2(p);
+			//printf("VM-b = [%d]\n", val_med[e]);
+			if (p->pb[p->lenb] >= val_med[e])
+			{
 				pa(p, 0);
-			else if (p->pb[0] >= val_med)
+				val_med[e] = next_val_med_pb(p, val_med[e]);
+			}
+			else if (pp_g(p->pb, p->lenb, val_med[e]) < pp_d(p->pb, p->lenb, val_med[e]))
 				rrb(p, 0);
 			else
 				rb(p, 0);
-			if (no_val_med_in_b(p, val_med) == SUCCESS)
-				val_med = find_val_med_in_b(p);
-			sswap2(p);
+			if (no_val_med_in_b(p, val_med[e]) == SUCCESS)
+				val_med[e] = next_val_med_pb(p, val_med[e]);
 		}
+
+
+
+		while (is_sort(p) == ERROR && p->lenb > 0 && pb_opti_fill(p) == ERROR)
+		{
+			//all_cmd_both(p);
+			val_med[e] = find_val_med_in_b(p);
+			//printf("VM-b = [%d]", val_med);
+			//sswap(p);
+			while (no_val_med_in_b(p, val_med[e]) == ERROR)
+			{
+				if (p->pb[p->lenb] >= val_med[e])
+					pa(p, 0);
+				else if (p->pb[0] >= val_med[e])
+					rrb(p, 0);
+				else
+					rb(p, 0);
+				//sswap(p);
+			}
+		}
+
+
+
+		val_med[i] = find_val_med(p);
+		//printf("VM = [%d]\n", val_med);
+		while (no_val_med_in_a(p, val_med[i]) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
+		{
+			//printf("opti = [%d]\n", pa_opti_fill(p));
+			if (p->pa[p->lena] < val_med[i])
+				pb(p, 0);
+			else if (p->pa[0] < val_med[i])
+				rra(p, 0);
+			else
+				ra(p, 0);
+			if (no_val_med_in_a(p, val_med[i]) == SUCCESS)
+			{
+				i++;
+				val_med[i] = find_val_med(p);
+			}
+			//printf("VM = [%d]\n", val_med);
+		}
+
+
+		e = i - 1;
+
+
+
+		//printf("VM-b4 = [%d]\n\n", val_med[i]);
+		val_med[e] = next_val_med_pb(p, val_med[i]);
+		//printf("\nVM-b2 = [%d]\n", val_med[e]);
+
+		while (no_val_med_in_b(p, val_med[e]) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR)
+		{
+			//sswap2(p);
+			//printf("VM-b = [%d]\n", val_med[e]);
+			if (p->pb[p->lenb] >= val_med[e])
+			{
+				pa(p, 0);
+				val_med[e] = next_val_med_pb(p, val_med[e]);
+			}
+			else if (pp_g(p->pb, p->lenb, val_med[e]) < pp_d(p->pb, p->lenb, val_med[e]))
+				rrb(p, 0);
+			else
+				rb(p, 0);
+			if (no_val_med_in_b(p, val_med[e]) == SUCCESS)
+				val_med[e] = next_val_med_pb(p, val_med[e]);
+		}
+
+
 		while (pb_opti_fill(p) != ERROR && pa_opti_fill(p) != ERROR && is_sort(p) == ERROR)
 			pa(p, 0);
-	}
+	//}
+/*		int e = i - 2;
+
+		while (e >= 0)
+		{
+			printf("vm = [%d]\n", val_med[e]);
+			e--;
+		}*/
+		//e = i - 2;
+		//printf("opt[%d]\n",pa_opti_fill(p));
+		//if ()
+		//val_med = find_val_med_in_b(p);
+		//printf("VM-b = [%d]\n", val_med[e]);
+	/*while (is_sort(p) == ERROR)
+	{
+		while (no_val_med_in_b(p, val_med[e]) == ERROR && p->lenb >= 0
+		&& pb_opti_fill(p) == ERROR && pa_opti_fill(p) != ERROR)
+		{
+			sswap2(p);
+			printf("VM-b = [%d]\n", val_med[e]);
+			if (p->pb[p->lenb] >= val_med[e])
+				pa(p, 0);
+			else if (p->pb[0] >= val_med[e])
+				rrb(p, 0);
+			else
+				rb(p, 0);
+			if (no_val_med_in_b(p, val_med[e]) == SUCCESS)
+			{
+				if (e == 0)
+					val_med[e] = find_val_med_in_b(p);
+				else
+					e--;
+			}
+		//	sswap2(p);
+		}
+		while (p->lena >= 0 && pa_opti_fill(p) == ERROR)
+		{
+			//printf("opti = [%d]\n", pa_opti_fill(p));
+			if (p->pa[p->lena] <= val_med[e])
+				pb(p, 0);
+			else if (p->pa[0] <= val_med[e])
+				rra(p, 0);
+			else
+				ra(p, 0);
+			if (no_val_med_in_a(p, val_med[e]) == SUCCESS)
+			{
+				if (e == 0)
+					val_med[e] = find_val_med_in_b(p);
+				else
+					e--;
+			}
+			if (no_val_med_in_a(p, val_med[i]) == SUCCESS)
+			{
+				i++;
+				val_med[i] = find_val_med(p);
+			}
+			//printf("VM = [%d]\n", val_med);
+			//sswap2(p);
+
+		}
+	}*/
+
+	//}
 /*		while (is_sort(p) == ERROR)
 		{
 
