@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 09:48:00 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:57:24 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,9 @@ void	rrotate(t_p *p)
 int	all_cmd_both(t_p *p)
 {
 
-	if (  (p->pa[0] < find_val_med(p)) && (p->pb[0] >= find_val_med_in_b(p)) )
+	if (  (p->pa[0] < find_val_med(p, 2)) && (p->pb[0] >= find_val_med_in_b(p, 2)) )
 		rrr(p, 1);
-	else if ( !(p->pa[0] < find_val_med(p))  && !(p->pb[0] >= find_val_med_in_b(p)) )
+	else if ( !(p->pa[0] < find_val_med(p, 2))  && !(p->pb[0] >= find_val_med_in_b(p, 2)) )
 		rr(p, 1);
 	else
 		return (ERROR);
@@ -159,12 +159,12 @@ void	bef_val_med_in_a(t_p *p)
 {
 	int val_med;
 
-	//val_med = find_val_med(p);
+	//val_med = find_val_med(p, 2);
 	//printf("VM = [%d]\n", val_med);
 	while (pa_is_trim(p) == ERROR && is_sort(p) == ERROR)
 	{
 		//all_cmd_both(p);
-		val_med = find_val_med(p);
+		val_med = find_val_med(p, 2);
 		//printf("VM = [%d]\n", val_med);
 		sswap(p);
 		while (no_val_med_in_a(p, val_med) == ERROR && pa_is_trim(p) == ERROR)
@@ -186,11 +186,11 @@ void	bef_val_med_in_b(t_p *p)
 {
 	int val_med;
 
-	//val_med = find_val_med_in_b(p);
+	//val_med = find_val_med_in_b(p, 2);
 	while (is_sort(p) == ERROR && pa_is_trim(p) != ERROR && p->lenb > 0)
 	{
 		//all_cmd_both(p);
-		val_med = find_val_med_in_b(p);
+		val_med = find_val_med_in_b(p, 2);
 		//printf("VM-b = [%d]", val_med);
 		sswap(p);
 		while (no_val_med_in_b(p, val_med) == ERROR)
@@ -212,7 +212,7 @@ int	loop(t_p *p)
 
 	int r = 0;
 	int med = ((p->lena + 1) / 2);
-	int val_med = find_val_med(p);
+	int val_med = find_val_med(p, 2);
 	//disp_st(p);
 	while (is_sort(p) == ERROR)
 	{

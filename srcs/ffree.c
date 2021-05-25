@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 15:20:00 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:58:21 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	return ;
+	//return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
@@ -41,9 +41,7 @@ void	disp_st( t_p *p)
 	int r = max;
 	ft_putstr_fd("\033c", STDOUT);
 
-//	printf("\n\n");
-//	printf("\n\n");
-//	printf("\n\n");
+	printf("\n\n\n\n\n");
 	while (max >= 0)
 	{
 		if (p->lena >= max)
