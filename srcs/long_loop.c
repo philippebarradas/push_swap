@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/25 14:56:04 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:58:39 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,22 +169,22 @@ void	fillpa_trim_pos(t_p *p, int div)
 
 int	long_loop(t_p *p)
 {
-	p->init_med = find_val_med(p, 3);
-	p->val_med_a = find_val_med(p, 3);
+	p->init_med = find_val_med(p, 2);
+	p->val_med_a = find_val_med(p, 2);
 	p->val_med_b = next_val_med_pb(p, p->val_med_a);
 
 
-	fillpb_first_med(p, 3);
+	fillpb_first_med(p, 2);
 	////fillpa_trim_pos(p);
 
 
-	fillpa_sec_med(p, 3);
-	fillpb_first_med(p, 3);
-	fillpa_trim_pos(p, 3);
+	fillpa_sec_med(p, 2);
+	fillpb_first_med(p, 2);
+	fillpa_trim_pos(p, 2);
 
-	fillpb_first_med(p, 3);
-	fillpa_trim(p, 3);
-
+	fillpb_first_med(p, 2);
+	fillpa_trim(p, 2);
+	//conter le nombre de div pour les repeter dans le b
 	printf("i = [%d][%d]\n", p->count, p->init_med);
 	free(p);
 	return (SUCCESS);

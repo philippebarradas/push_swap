@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/25 12:52:56 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:55:43 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_p
 	int			count;
 
 	int			med;
-
+	int			div;
 }				t_p;
 
 //tool
