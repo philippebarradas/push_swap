@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/25 15:55:43 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/26 16:31:26 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_p
 	int			val_med_a;
 	int			val_med_b;
 
+	int			init_lena;
 
 	int			init_med;
 	int			max;

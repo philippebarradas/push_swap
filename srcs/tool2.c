@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tool2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:23:21 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/24 10:23:59 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/26 11:39:28 by philippe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	pp_g(int *pill, int len, int val_med)
 	i = 0;
 	while (i <= len)
 	{
-		if (pill[i] == val_med)
+		if (pill[i] >= val_med)
 			return (i);
 		i++;
 	}
@@ -53,7 +53,7 @@ int	pp_d(int *pill, int len, int val_med)
 	i = 0;
 	while (len - i > 0)
 	{
-		if (pill[len - i] == val_med)
+		if (pill[len - i] >= val_med)
 			return (i);
 		i++;
 	}
