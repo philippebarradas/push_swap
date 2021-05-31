@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/25 14:08:41 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/31 16:06:35 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,15 +187,18 @@ int	find_val_med_in_b(t_p *p, int div)
 			e++;
 		max--;
 	}
+//	printf("max = [%d]\n", max);
 	return (max);
 }
 
-int	is_in_pill(int *pil, int nbr)
+int	is_in_pill(int *pil, int nbr, int len)
 {
 	int	i;
 
 	i = 0;
-	while (pil[i])
+	if (len == -1)
+		return (ERROR);
+	while (i <= len)
 	{
 		if (pil[i] == nbr)
 			return (SUCCESS);
@@ -218,8 +221,8 @@ int	pa_opti_fill(t_p *p)
 		//printf("next = [%d] < [%d] || [%d]\n", next, p->pa[e], p->maxe);
 		while (next < p->pa[e])
 		{
-			if (is_in_pill(p->pa, next) == SUCCESS
-				|| is_in_pill(p->pb, next) == SUCCESS)
+			if (is_in_pill(p->pa, next, p->lena) == SUCCESS
+				|| is_in_pill(p->pb, next, p->lenb) == SUCCESS)
 				return (ERROR);
 			if (p->maxe <= 0)
 				next--;
@@ -244,8 +247,8 @@ int	pb_opti_fill(t_p *p)
 		next = p->pb[e + 1] - 1;
 		while (next > p->pb[e])
 		{
-			if (is_in_pill(p->pb, next) == SUCCESS
-				|| is_in_pill(p->pa, next) == SUCCESS)
+			if (is_in_pill(p->pb, next, p->lenb) == SUCCESS
+				|| is_in_pill(p->pa, next, p->lena) == SUCCESS)
 				return (ERROR);
 			if (p->min >= 0)
 				next++;

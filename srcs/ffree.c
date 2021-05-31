@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ffree.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/26 18:08:49 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/31 16:04:52 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	//return ;
+	return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
 		max = p->lenb;
 	int r = max;
 
-	printf("\n\n\n\n\n");
+	printf("\n\n\n\n\n\n\n\n\n");
 	while (max >= 0)
 	{
 		if (p->lena >= max)
@@ -78,7 +78,7 @@ void	disp_st( t_p *p)
 		printf("\n");
 		max--;
 	}
-	usleep(10000);
+	usleep(30000);
 }
 
 void	rrr(t_p *p, int x)

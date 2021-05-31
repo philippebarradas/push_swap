@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/26 16:31:26 by philippe         ###   ########.fr       */
+/*   Updated: 2021/05/31 15:13:56 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ typedef struct s_p
 
 //tool
 
+int	pp_g_egg(int *pill, int len, int val_med);
+int	pp_d_egg(int *pill, int len, int val_med);
+
 int	next_val_med_pb(t_p *p, int val_med);
 int	pp_g(int *pill, int len, int val_med);
 int	pp_d(int *pill, int len, int val_med);
 
 
-int	is_in_pill(int *pil, int nbr);
+int	is_in_pill(int *pil, int nbr, int len);
 
 int		pa_opti_fill(t_p *p);
 int		pb_opti_fill(t_p *p);
