@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/31 16:04:52 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/31 16:30:36 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	return ;
+	//return ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else

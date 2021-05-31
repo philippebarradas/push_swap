@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/31 16:07:54 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/05/31 16:34:31 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,17 +343,26 @@ int	long_loop(t_p *p)
 	p->init_lena = p->lena;
 	int initmin = p->min;
 
-
-	fillpb_first_med(p, 3, 0);
-	fillpa_sec_med(p, 6, 0);
-
+	if (p->lena < 200)
+	{
+		fillpb_first_med(p, 2, 0);
+		fillpa_sec_med(p, 3, 0);
+	}
+	if (p->lena >= 200)
+	{
+		fillpb_first_med(p, 3, 0);
+		fillpa_sec_med(p, 6, 0);
+	}
 	//printf("min = [%d][%d]\n",initmin, p->min);
 
 	while (is_sort(p) == ERROR && 1 == 1)
 	{
 		if (p->pa[p->lena] == p->min) // min fin pa
 		{
-			ra(p, 0);
+			if (is_in_pill(p->pb, p->min, p->lenb) == SUCCESS && p->pb[p->lenb] != p->min)
+				rr(p, 1);
+			else
+				ra(p, 0);
 			p->min = next_min(p);
 			//printf("1min = [%d][%d]\n",initmin, p->min);
 		}
@@ -381,202 +390,12 @@ int	long_loop(t_p *p)
 
 
 	}
-	//printf("i = [%d] len = [%d] div = [%d]\n", p->count, p->init_med, p->div);
-
-	//p->div++;
-	//while (p->div >= 1 && is_sort(p) == ERROR)
-//	{
-		//fillpa_trim(p, 2,(p->init_lena / p->div));
-		//if (p->div > 1)
-		//	p->div--;
-
-
-
-/*
-		printf("--[%d]-- len [%d] div [%d]\n", (p->init_lena / p->div), p->init_lena, p->div);
-
-		if (p->div > 1)
-			p->div--;
-		fillpb_trim_neg(p, 2, p->init_lena);
-		printf("--[%d]-- len [%d] div [%d]\n", (p->init_lena / p->div), p->init_lena, p->div);
-
-
-		if (p->div > 1)
-			p->div--;
-		fillpa_trim(p, 2,p->init_lena );
-		printf("--[%d]-- len [%d] div [%d]\n", (p->init_lena / p->div), p->init_lena, p->div);
-
-
-		if (p->div > 1)
-			p->div--;
-		fillpa_sec_med(p, 2, (p->init_lena / p->div));
-		printf("--[%d]--\n", (p->init_lena / p->div));
-
-
-		if (p->div > 1)
-			p->div--;
-		fillpb_trim_neg(p, 2, p->init_lena);
-		printf("--[%d]--\n", (p->init_lena / p->div));
-
-
-		if (p->div > 1)
-			p->div--;
-		printf("--[%d]--\n", (p->init_lena / p->div));*/
-//	}
-
-	//printf ("div = [%d] i = [%d]\n", p->div, p->count);
-	//fillpa_sec_med(p, 3, 0);
-	//fillpb_first_med(p, 3, 0);
-
-/* 	fillpb_first_med(p, 3, 1);
-	fillpa_sec_med(p, 3, 1);
-	fillpb_first_med(p, 3, 1); */
-
-
-	//fillpa_trim_pos(p, 3);
-
-	//fillpb_first_med(p, 3, 0);
-
-//	fillpa_trim(p, 3);
-	//conter le nombre de div pour les repeter dans le b
-
+	printf("i = [%d] len = [%d] div = [%d]\n", p->count, p->init_med, p->div);
 
 	//while (pb_opti_fill(p) != ERROR && pa_opti_fill(p) != ERROR && is_sort(p) == ERROR)
 	//	pa(p, 0);
 	free(p);
 	return (SUCCESS);
-/*	while (is_sort(p) == ERROR && p->lenb > 0 && pb_opti_fill(p) == ERROR)
-	{
-		val_med_b = find_val_med_in_b(p, 6);
-		val_med_a = find_val_med(p, 6);
-		while (no_val_med_in_b(p, val_med_b) == ERROR && pb_opti_fill(p) == ERROR)
-		{
-			if (sswap2(p) == SUCCESS)
-				;
-			else if (p->pb[p->lenb] >= val_med_b)
-				pa(p, 0);
-			else if (p->pb[0] >= val_med_b)
-				rrb(p, 0);
-			else
-				rb(p, 0);
-		}
-	}
 
-	val_med_a = find_val_med(p, 9);
-	val_med_b = next_val_med_pb(p, val_med_a);
-		//printf("VM = [%d]\n", val_med);
-	while (no_val_med_in_a(p, val_med_a) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
-	{
-		//printf("opti = [%d]\n", pa_opti_fill(p));
-		//val_med_b = find_val_med_in_b(p);
-
-		val_med_b = next_val_med_pb(p, val_med_a);
-		if (sswap2(p) == SUCCESS)
-			;
-		else if (p->pa[p->lena] < val_med_a)
-			pb(p, 0);
-		else if (p->pa[0] < val_med_a)
-			rra(p, 0);
-		else if (pp_g(p->pb, p->lenb, val_med_b) > pp_d(p->pb, p->lenb, val_med_b))
-			rr(p, 1);
-		else
-			ra(p, 0);
-		if (no_val_med_in_a(p, val_med_a) == SUCCESS)
-		{
-			val_med_b = next_val_med_pb(p, val_med_a);
-			val_med_a = find_val_med(p, 9);
-		}
-		//printf("VM = [%d]\n", val_med);
-	}
-*/
-
-/*
-	//	printf("VM- = [%d] [%d]\n\n", val_med_a, pa_opti_fill(p));
-	val_med_b = next_val_med_pb(p, val_med_a);
-	//printf("\nVM-b2 = [%d]\n", val_med[e]);
-	while (no_val_med_in_b(p, val_med_b) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR && (val_med_b) >= (init_med ))
-	{
-		val_med_a = find_val_med(p);
-		//sswap2(p);
-		//printf("VM-b = [%d]\n", val_med[e]);
-		//printf("[%d][%d]\n", val_med_b, init_med);
-		if (sswap2(p) == SUCCESS)
-			;
-		else if (p->pb[p->lenb] >= val_med_b)
-			pa(p, 0);
-		else if (pp_g(p->pb, p->lenb, val_med_b) <= pp_d(p->pb, p->lenb, val_med_b))
-			rrb(p, 0);
-		else
-			rb(p, 0);
-		if (no_val_med_in_b(p, val_med_b) == SUCCESS)
-			val_med_b = next_val_med_pb(p, val_med_b);
-	}
-
-	while (is_sort(p) == ERROR && p->lenb > 0 && pb_opti_fill(p) == ERROR)
-	{
-		val_med_b = find_val_med_in_b(p);
-		val_med_a = find_val_med(p);
-		while (no_val_med_in_b(p, val_med_b) == ERROR && pb_opti_fill(p) == ERROR)
-		{
-			if (sswap2(p) == SUCCESS)
-				;
-			else if (p->pb[p->lenb] >= val_med_b)
-				pa(p, 0);
-			else if (p->pb[0] >= val_med_b)
-				rrb(p, 0);
-			else
-				rb(p, 0);
-		}
-	}
-
-	val_med_a = find_val_med(p);
-	val_med_b = next_val_med_pb(p, val_med_b);
-
-	while (no_val_med_in_a(p, val_med_a) == ERROR && p->lena >= 0 && pa_opti_fill(p) == ERROR)
-	{
-		//printf("a[%d] b[%d]\n", val_med_a, val_med_b);
-		val_med_b = next_val_med_pb(p, val_med_b);
-
-		if (sswap2(p) == SUCCESS)
-			;
-		else if (p->pa[p->lena] < val_med_a && p->pa[p->lena] < init_med)
-			pb(p, 0);
-		else if (p->pa[0] < val_med_a)
-			rra(p, 0);
-		else if (pp_g(p->pb, p->lenb, val_med_b) > pp_d(p->pb, p->lenb, val_med_b))
-			rr(p, 1);
-		else
-			ra(p, 0);
-		if (no_val_med_in_a(p, val_med_a) == SUCCESS)
-		{
-			val_med_b = next_val_med_pb(p, val_med_b);
-			val_med_a = find_val_med(p);
-		}
-	}*/
-	//printf("VM-b4 = [%d]\n\n", val_med[i]);
-	/*val_med_b = next_val_med_pb(p, val_med_a);
-	val_med_a = find_val_med(p, 12);
-
-	//printf("\nVM-b2 = [%d]\n", val_med[e]);
-	while (no_val_med_in_b(p, val_med_b) == ERROR && p->lenb >= 0 && pb_opti_fill(p) == ERROR)
-	{
-		val_med_a = find_val_med(p, 12);
-		//printf("VM-b = [%d]\n", val_med[e]);
-		if (sswap2(p) == SUCCESS)
-			;
-		else if (p->pb[p->lenb] >= val_med_b)
-			pa(p, 0);
-		else if (pp_g(p->pb, p->lenb, val_med_b) <= pp_d(p->pb, p->lenb, val_med_b))
-			rrb(p, 0);
-		else
-			rb(p, 0);
-		if (no_val_med_in_b(p, val_med_b) == SUCCESS)
-		{
-			val_med_b = next_val_med_pb(p, val_med_b);
-			val_med_a = find_val_med(p, 12);
-		}
-	}
-	while (pb_opti_fill(p) != ERROR && pa_opti_fill(p) != ERROR && is_sort(p) == ERROR)
-		pa(p, 0);*/
 
 }
