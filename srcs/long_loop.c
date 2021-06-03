@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/03 15:27:23 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/03 16:26:33 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,7 @@ int	long_loop(t_p *p)
 		p->val_med_b = find_val_med_in_b(p, 6);
 		fillpa_sec_med(p, 6, 6);
 	}
-	//printf("min = [%d][%d]\n",initmin, p->min);
-
+   
 	while (is_sort(p) == ERROR && 1 == 1)
 	{
 
