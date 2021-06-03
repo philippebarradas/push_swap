@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/31 16:06:35 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/03 15:16:05 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	pa_is_trim(t_p *p)
 	while (i + 1 <= p->lena)
 	{
 		if (p->pa[i] < p->pa[i + 1])
-		{
 			return (ERROR);
-		}
 		i++;
 	}
 	return (SUCCESS);
