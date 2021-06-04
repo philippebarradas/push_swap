@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/03 15:16:05 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/04 09:02:16 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ int	min_is_in_pa(t_p *p, int min)
 	return (ERROR);
 }
 
-int	find_val_med(t_p *p, int div)
+int	find_val_med(t_p *p, float div)
 {
 	int	i;
 	int	max;
 	int	min;
-	int	e;
+	float	e;
 
 	e = 0;
 	i = 0;
@@ -158,12 +158,12 @@ int	min_is_in_pb(t_p *p, int max)
 	return (ERROR);
 }
 
-int	find_val_med_in_b(t_p *p, int div)
+int	find_val_med_in_b(t_p *p, float div)
 {
 	int	i;
 	int	max;
 	int	min;
-	int	e;
+	float	e;
 
 	e = 0;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/31 15:13:56 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/04 09:02:06 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_p
 	int			*pa;
 	int			*pb;
 
-	int			lena;
+	float			lena;
 	int			lenb;
 
 	int			val_med_a;
@@ -63,7 +63,7 @@ int	is_in_pill(int *pil, int nbr, int len);
 int		pa_opti_fill(t_p *p);
 int		pb_opti_fill(t_p *p);
 
-int find_val_med(t_p *p, int dib);
+int find_val_med(t_p *p, float div);
 int	pa_top_is_max(t_p *p);
 int	pb_top_is_min(t_p *p);
 int	pb_is_trim(t_p *p);
@@ -73,7 +73,7 @@ int	min_is_in_pa(t_p *p, int min);
 int	no_val_med_in_a(t_p *p, int val_med);
 int	no_val_med_in_b(t_p *p, int val_med);
 
-int find_val_med_in_b(t_p *p, int div);
+int find_val_med_in_b(t_p *p, float div);
 
 int			is_sort(t_p *p);
 int			loop(t_p *p);
