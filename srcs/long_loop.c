@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 09:01:05 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/04 14:39:29 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,13 @@ int		next_min(t_p *p)
 	return (retb);
 }
 
-void	fillpb_first_med(t_p *p, float av)
+void	fillpb_first_med(t_p *p, float av, int len)
 {
-	int r;
-
-	r = 0;
-	while (pa_opti_fill(p) == ERROR && p->lena >= 0)
+	while (pa_opti_fill(p) == ERROR && p->lena >= 0)// && p->lena >= (p->init_lena / len))
 	{
 		if (p->pa[p->lena] < p->val_med_a)
 			pb(p, 0);
-		else if (p->pa[0] < p->val_med_a)
+		else if (p->pa[0] < p->val_med_a && p->pa[0] < p->pa[p->lena - 1])
 			rra(p, 0);
 		else
 			ra(p, 0);
@@ -101,10 +98,12 @@ void	fillpb_first_med(t_p *p, float av)
 	}
 }
 
-void	fillpa_sec_med(t_p *p, float av)
+void	fillpa_sec_med(t_p *p, float av, int len)
 {
-	while (pb_opti_fill(p) == ERROR && p->lenb >= 0)
+	int e = 0;//5
+	while (p->lenb >= 0)// && p->lenb >= (p->init_lena / len))//pb_opti_fill(p) == ERROR && 
 	{
+		p->val_med_a = find_val_med(p, 3);
 		if (p->pb[p->lenb] >= p->val_med_b)
 		{
 			pa(p, 0);
@@ -119,7 +118,10 @@ void	fillpa_sec_med(t_p *p, float av)
 		else
 			rb(p, 0);
 		if (no_val_med_in_b(p, p->val_med_b) == SUCCESS)
+		{
+			e++;
 			p->val_med_b = find_val_med_in_b(p, av);
+		}
 	}
 }
 
@@ -132,17 +134,17 @@ int	long_loop(t_p *p)
 	int r = 0;
 	if (p->lena < 200)
 	{
-		p->val_med_a = find_val_med(p, 2);
-				   fillpb_first_med(p, 2);
-   p->val_med_b = find_val_med_in_b(p, 6);
-					 fillpa_sec_med(p, 3);
+		p->val_med_a = find_val_med(p, 3);
+				fillpb_first_med(p, 3, 3);
+   p->val_med_b = find_val_med_in_b(p, 3);
+				  fillpa_sec_med(p, 3, 3);
 	}
 	else if (p->lena >= 200)
 	{
 		p->val_med_a = find_val_med(p, 3);
-				   fillpb_first_med(p, 3);
+			   fillpb_first_med(p, 2, 35);
    p->val_med_b = find_val_med_in_b(p, 9);
-					 fillpa_sec_med(p, 6);
+				 fillpa_sec_med(p, 6, 25);
 	}
    
 	while (is_sort(p) == ERROR && 1 == 1)
@@ -162,6 +164,11 @@ int	long_loop(t_p *p)
 				ss(p, 1);
 			else
 				sa(p, 0);
+			if (p->pb[p->lenb] != next_min(p) && pp_g_egg(p->pb, p->lenb, next_min(p)) > pp_d_egg(p->pb, p->lenb, next_min(p)) )
+				rr(p, 1);
+			else
+				ra(p, 0);
+			p->min = next_min(p);
 		}
 		else if (is_in_pill(p->pb, p->min, p->lenb) == SUCCESS && p->pb[p->lenb] != p->min)
 		{
@@ -169,13 +176,6 @@ int	long_loop(t_p *p)
 				rrb(p, 0);
 			else
 				rb(p, 0);
-				/* 			else if (p->pa[p->lena - 1] == p->min && p->lena > 0)
-			{
-				if (p->pb[p->lenb - 1] < p->pb[p->lenb] && p->lenb > 0)
-					ss(p, 1);
-				else
-					sa(p, 0);
-			} */
 		}	
 		else if (is_in_pill(p->pb, p->min, p->lenb) == SUCCESS && p->pb[p->lenb] == p->min)
 		{
@@ -185,7 +185,6 @@ int	long_loop(t_p *p)
 			else
 				ra(p, 0);
 			p->min = next_min(p);
-			//printf("2min = [%d][%d]\n",initmin, p->min);
 		}
 		else if (is_in_pill(p->pa, p->min, p->lena) == SUCCESS) // find min in pa push other -> pb
 		{
@@ -195,6 +194,25 @@ int	long_loop(t_p *p)
 	//printf("i == [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);
-
-
 }
+
+/* void	fillpa_trim(t_p *p , int av)
+ {
+ 	p->val_med_b = next_val_med_pb(p, p->val_med_a);
+ 	while (no_val_med_in_b(p, p->val_med_b) == ERROR && p->lenb >= (av) && pb_opti_fill(p) == ERROR) //&& p->lena < av)
+ 	{
+ 		//printf("VM-b = [%d]\n", val_med[e]);
+ 		if (p->pb[p->lenb] >= p->val_med_b)
+ 			pa(p, 0);
+ 		else if (pp_g(p->pb, p->lenb, p->val_med_b) <= pp_d(p->pb, p->lenb, p->val_med_b))
+ 			rrb(p, 0);
+ 		else
+ 			rb(p, 0);
+ 		if (no_val_med_in_b(p, p->val_med_b) == SUCCESS)
+ 		{
+ 			p->val_med_b = next_val_med_pb(p, p->val_med_b);
+ 		}
+ 		//if (no_val_med_in_b(p, p->val_med_b) == SUCCESS)
+ 		//	p->val_med_b = next_val_med_pb(p, p->val_med_b);
+ 	}
+ } */

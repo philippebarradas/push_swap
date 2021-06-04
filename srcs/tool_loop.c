@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 09:02:16 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/04 12:43:29 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ int	min_is_in_pa(t_p *p, int min)
 	return (ERROR);
 }
 
-int	find_val_med(t_p *p, float div)
+int	find_val_med(t_p *p, int div)
 {
 	int	i;
 	int	max;
 	int	min;
-	float	e;
+	int	e;
 
 	e = 0;
 	i = 0;
@@ -135,7 +135,7 @@ int	find_val_med(t_p *p, float div)
 	}
 	if ((p->lena % 2) == 1)
 		e--;
-	while (e < (p->lena / div) && min < max)
+	while (e <= (p->lena / div) && min <= max)
 	{
 		if (min_is_in_pa(p, min) == SUCCESS)
 			e++;
@@ -158,12 +158,12 @@ int	min_is_in_pb(t_p *p, int max)
 	return (ERROR);
 }
 
-int	find_val_med_in_b(t_p *p, float div)
+int	find_val_med_in_b(t_p *p, int div)
 {
 	int	i;
 	int	max;
 	int	min;
-	float	e;
+	int	e;
 
 	e = 0;
 	i = 0;
@@ -179,7 +179,7 @@ int	find_val_med_in_b(t_p *p, float div)
 	}
 	if ((p->lenb % 2) == 1)
 		e--;
-	while (e < (p->lenb / div) && min < max)
+	while (e <= (p->lenb / div) && min <= max)
 	{
 		if (min_is_in_pb(p, max) == SUCCESS)
 			e++;
