@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 14:40:34 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/07 15:33:59 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	disp_st( t_p *p)
 	int	i;
 	int	max;
 	int e = 0;
-	return ;
+	//sreturn ;
 	if (p->lena > p->lenb)
 		max = p->lena;
 	else
@@ -64,20 +64,32 @@ void	disp_st( t_p *p)
 		e = 0;
 		if (p->lenb >= max)
 		{
+			if (p->pb[max] == p->max_b)
+				ft_putstr_fd("\033[0;32m", STDOUT);
+			if (p->pb[max] == p->min)
+				ft_putstr_fd("\033[0;36m", STDOUT);
 			while (++e <= p->pb[max])
 				ft_putstr_fd("+", STDOUT);
 			while (--e >= p->pb[max] && p->pb[max] < 0)
+			{	
+				//if (p->pb[max] != p->max_b)
+				//	ft_putstr_fd("\033[0;31m", STDOUT);
 				ft_putstr_fd("-", STDOUT);
+				//if (p->pb[max] != p->max_b)
+				//	ft_putstr_fd("\033[0m", STDOUT);
+			}
 			e = 0;
 			ft_putstr_fd(" ", STDOUT);
 			ft_putnbr_fd(p->pb[max], STDOUT);
+			if (p->pb[max] == p->max_b || p->pb[max] == p->min)
+				ft_putstr_fd("\033[0m", STDOUT);
 		}
 		else
 			ft_putstr_fd("o", STDOUT);
 		printf("\n");
 		max--;
 	}
-	usleep(20000);
+	usleep(60000);
 }
 
 void	rrr(t_p *p, int x)

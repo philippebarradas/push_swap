@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 14:39:29 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/07 15:33:53 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	fillpb_first_med(t_p *p, float av, int len)
 void	fillpa_sec_med(t_p *p, float av, int len)
 {
 	int e = 0;//5
-	while (p->lenb >= 0)// && p->lenb >= (p->init_lena / len))//pb_opti_fill(p) == ERROR && 
+	while (p->lenb >= 0 && p->lenb >= (p->init_lena / len))//pb_opti_fill(p) == ERROR && 
 	{
 		p->val_med_a = find_val_med(p, 3);
 		if (p->pb[p->lenb] >= p->val_med_b)
@@ -125,6 +125,27 @@ void	fillpa_sec_med(t_p *p, float av, int len)
 	}
 }
 
+void	find_max_b(t_p *p)
+{
+	int i;
+	int max;
+	if (p->lenb == -1)
+	{
+		max = 0;
+		return ; 
+	}
+	max = p->pb[0];
+	i = 0;
+	while (i <= p->lenb)
+	{
+		if (p->pb[i] > max)
+			max = p->pb[i];
+		i++;
+	}
+	p->max_b = max;
+	//printf("max b = [%d]\n", max);
+}
+
 int	long_loop(t_p *p)
 {
 	p->div = 0;
@@ -134,8 +155,8 @@ int	long_loop(t_p *p)
 	int r = 0;
 	if (p->lena < 200)
 	{
-		p->val_med_a = find_val_med(p, 3);
-				fillpb_first_med(p, 3, 3);
+		p->val_med_a = find_val_med(p, 2);
+				fillpb_first_med(p, 2, 2);
    p->val_med_b = find_val_med_in_b(p, 3);
 				  fillpa_sec_med(p, 3, 3);
 	}
@@ -146,10 +167,13 @@ int	long_loop(t_p *p)
    p->val_med_b = find_val_med_in_b(p, 9);
 				 fillpa_sec_med(p, 6, 25);
 	}
-   
+   int mi;
+   int ma;
 	while (is_sort(p) == ERROR && 1 == 1)
 	{
-
+		mi = 10000;
+		ma = 10000;
+		find_max_b(p);
 		if (p->pa[p->lena] == p->min)
 		{
 			if (p->pb[p->lenb] != next_min(p) && pp_g_egg(p->pb, p->lenb, next_min(p)) > pp_d_egg(p->pb, p->lenb, next_min(p)) )
@@ -158,21 +182,28 @@ int	long_loop(t_p *p)
 				ra(p, 0);
 			p->min = next_min(p);
 		}
-		else if (p->pa[p->lena - 1] == p->min && p->lena > 0)
-		{
-			if (p->pb[p->lenb - 1] < p->pb[p->lenb] && p->lenb > 0)
-				ss(p, 1);
-			else
-				sa(p, 0);
-			if (p->pb[p->lenb] != next_min(p) && pp_g_egg(p->pb, p->lenb, next_min(p)) > pp_d_egg(p->pb, p->lenb, next_min(p)) )
-				rr(p, 1);
-			else
-				ra(p, 0);
-			p->min = next_min(p);
-		}
+		else if (is_in_pill(p->pb, p->min, p->lenb) == SUCCESS && p->pb[p->lenb] == p->max_b && p->lenb >= 1)
+			pa(p, 0);
 		else if (is_in_pill(p->pb, p->min, p->lenb) == SUCCESS && p->pb[p->lenb] != p->min)
 		{
 			if (pp_g_egg(p->pb, p->lenb, p->min) <= pp_d_egg(p->pb, p->lenb, p->min))
+				mi = pp_g_egg(p->pb, p->lenb, p->min);
+			else 
+				mi = pp_d_egg(p->pb, p->lenb, p->min);
+			if (pp_g_egg(p->pb, p->lenb, p->max_b) <= pp_d_egg(p->pb, p->lenb, p->max_b)) 
+				ma = pp_g_egg(p->pb, p->lenb, p->max_b);
+			else 
+				ma = pp_d_egg(p->pb, p->lenb, p->max_b);
+
+
+
+		/* 	printf("min [%d] [%d][%d] = [%d]\nmax [%d] [%d][%d] = [%d]\n",
+			mi, pp_g_egg(p->pb, p->lenb, p->min), pp_d_egg(p->pb, p->lenb, p->min), p->min,
+			ma, pp_g_egg(p->pb, p->lenb, p->max_b), pp_d_egg(p->pb, p->lenb, p->max_b), p->max_b);
+ */
+		
+			if ((pp_g_egg(p->pb, p->lenb, p->max_b) < pp_g_egg(p->pb, p->lenb, p->min) && mi > ma)
+			|| (pp_g_egg(p->pb, p->lenb, p->min) < pp_g_egg(p->pb, p->lenb, p->max_b) && ma > mi))
 				rrb(p, 0);
 			else
 				rb(p, 0);
@@ -191,10 +222,28 @@ int	long_loop(t_p *p)
 			pb(p , 0);
 		}
 	}
-	//printf("i == [%d]\n", p->count);
+	printf("i == [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);
 }
+
+/* 		else if (p->pa[p->lena - 1] == p->min && p->lena > 0)
+		{
+			if (p->pb[p->lenb - 1] < p->pb[p->lenb] && p->lenb > 0)
+				ss(p, 1);
+			else
+				sa(p, 0);
+			if (p->pb[p->lenb] != next_min(p) && pp_g_egg(p->pb, p->lenb, next_min(p)) > pp_d_egg(p->pb, p->lenb, next_min(p)) )
+				rr(p, 1);
+			else
+				ra(p, 0);
+			p->min = next_min(p);
+		} */
+
+
+
+
+
 
 /* void	fillpa_trim(t_p *p , int av)
  {

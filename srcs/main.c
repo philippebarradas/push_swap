@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/31 15:44:41 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/07 08:30:14 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,15 @@ int	main(int ac, char **av)
 	p->max = p->pa[i];
 	p->maxe = p->pa[i];
 	p->min = p->pa[i];
+	p->midd_a = p->pa[i];
 	while (i  <= p->lena)
 	{
 		if (abs(p->pa[i]) > p->max)
 			p->max = abs(p->pa[i]);
 		if (p->pa[i] > p->maxe)
 			p->maxe = p->pa[i];
+		if (p->pa[i] > p->midd_a && i <= p->lena / 2)
+			p->midd_a = p->pa[i];
 		if (p->pa[i] < p->min)
 			p->min = p->pa[i];
 		i++;

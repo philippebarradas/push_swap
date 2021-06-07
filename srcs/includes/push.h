@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 09:10:21 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/07 13:02:27 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ typedef struct s_p
 
 	int			val_med_a;
 	int			val_med_b;
+	int			midd_a;
 
 	int			init_lena;
 
 	int			init_med;
 	int			max;
-
+	int			max_b;
 	int			maxe;
 	int			min;
 	int			count;
@@ -49,6 +50,7 @@ typedef struct s_p
 }				t_p;
 
 //tool
+int		next_min(t_p *p);
 
 int	pp_g_egg(int *pill, int len, int val_med);
 int	pp_d_egg(int *pill, int len, int val_med);
