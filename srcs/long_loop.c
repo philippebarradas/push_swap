@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/07 15:33:53 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/08 08:14:41 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		next_min(t_p *p)
 
 void	fillpb_first_med(t_p *p, float av, int len)
 {
-	while (pa_opti_fill(p) == ERROR && p->lena >= 0)// && p->lena >= (p->init_lena / len))
+	while (pa_opti_fill(p) == ERROR && p->lena >= 0)// && p->lena >= len)
 	{
 		if (p->pa[p->lena] < p->val_med_a)
 			pb(p, 0);
@@ -101,7 +101,7 @@ void	fillpb_first_med(t_p *p, float av, int len)
 void	fillpa_sec_med(t_p *p, float av, int len)
 {
 	int e = 0;//5
-	while (p->lenb >= 0 && p->lenb >= (p->init_lena / len))//pb_opti_fill(p) == ERROR && 
+	while (p->lenb >= 0 && p->lenb >= len && pb_opti_fill(p) == ERROR) 
 	{
 		p->val_med_a = find_val_med(p, 3);
 		if (p->pb[p->lenb] >= p->val_med_b)
@@ -156,23 +156,23 @@ int	long_loop(t_p *p)
 	if (p->lena < 200)
 	{
 		p->val_med_a = find_val_med(p, 2);
-				fillpb_first_med(p, 2, 2);
+				fillpb_first_med(p, 2, p->init_lena / 2);
    p->val_med_b = find_val_med_in_b(p, 3);
-				  fillpa_sec_med(p, 3, 3);
+				  fillpa_sec_med(p, 3, p->init_lena / 3);
 	}
 	else if (p->lena >= 200)
 	{
 		p->val_med_a = find_val_med(p, 3);
-			   fillpb_first_med(p, 2, 35);
+			   fillpb_first_med(p, 3, p->init_lena / 25);
    p->val_med_b = find_val_med_in_b(p, 9);
-				 fillpa_sec_med(p, 6, 25);
+				 fillpa_sec_med(p, 6, p->init_lena / 15);
 	}
    int mi;
    int ma;
 	while (is_sort(p) == ERROR && 1 == 1)
 	{
-		mi = 10000;
-		ma = 10000;
+		mi = 0;
+		ma = 0;
 		find_max_b(p);
 		if (p->pa[p->lena] == p->min)
 		{
@@ -222,7 +222,7 @@ int	long_loop(t_p *p)
 			pb(p , 0);
 		}
 	}
-	printf("i == [%d]\n", p->count);
+	//printf("i == [%d]\n", p->count);
 	free(p);
 	return (SUCCESS);
 }
