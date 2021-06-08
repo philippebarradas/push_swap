@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/08 08:14:41 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/08 14:38:02 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		next_min(t_p *p)
 
 void	fillpb_first_med(t_p *p, float av, int len)
 {
-	while (pa_opti_fill(p) == ERROR && p->lena >= 0)// && p->lena >= len)
+	while (pa_opti_fill(p) == ERROR && p->lena >= 0 && p->lena >= len)
 	{
 		if (p->pa[p->lena] < p->val_med_a)
 			pb(p, 0);
@@ -113,7 +113,17 @@ void	fillpa_sec_med(t_p *p, float av, int len)
 				p->min = next_min(p);
 			}
 		}
-		else if (pp_g(p->pb, p->lenb, p->val_med_b) <= pp_d(p->pb, p->lenb, p->val_med_b))
+		else if (p->pb[p->lenb] > p->pb[p->lenb - 1] && p->pa[p->lena] > p->pa[p->lena - 1])
+			ss(p, 1);
+		else if (pp_g(p->pb, p->lenb, p->val_med_b) == pp_d(p->pb, p->lenb, p->val_med_b)
+		&& pp_g_val(p->pb, p->lenb, p->val_med_b) > pp_d_val(p->pb, p->lenb, p->val_med_b))
+		{
+			//printf(" ==== [%d] == [%d] ==== \n" ,pp_g_val(p->pb, p->lenb, p->val_med_b), pp_d_val(p->pb, p->lenb, p->val_med_b));
+			rrb(p, 0);
+			//break;
+			//p->lenb = -1;
+		}
+		else if (pp_g(p->pb, p->lenb, p->val_med_b) < pp_d(p->pb, p->lenb, p->val_med_b))
 			rrb(p, 0);
 		else
 			rb(p, 0);
@@ -153,23 +163,24 @@ int	long_loop(t_p *p)
 	int initmin = p->min;
 	p->init_med = find_val_med(p, 2);
 	int r = 0;
+  	int mi;
+   	int ma;
 	if (p->lena < 200)
 	{
-		p->val_med_a = find_val_med(p, 2);
-				fillpb_first_med(p, 2, p->init_lena / 2);
-   p->val_med_b = find_val_med_in_b(p, 3);
-				  fillpa_sec_med(p, 3, p->init_lena / 3);
+			 p->val_med_a = find_val_med(p, 2);
+	 fillpb_first_med(p, 2, p->init_lena / 4);
+   	    p->val_med_b = find_val_med_in_b(p, 6);
+	   fillpa_sec_med(p, 3, p->init_lena / 2);
 	}
 	else if (p->lena >= 200)
 	{
 		p->val_med_a = find_val_med(p, 3);
-			   fillpb_first_med(p, 3, p->init_lena / 25);
-   p->val_med_b = find_val_med_in_b(p, 9);
-				 fillpa_sec_med(p, 6, p->init_lena / 15);
+		fillpb_first_med(p, 3, 0);
+   		p->val_med_b = find_val_med_in_b(p, 9);
+		fillpa_sec_med(p, 6, p->init_lena / 15);
 	}
-   int mi;
-   int ma;
-	while (is_sort(p) == ERROR && 1 == 1)
+
+	while (is_sort(p) == ERROR && r == 0)
 	{
 		mi = 0;
 		ma = 0;
@@ -197,14 +208,36 @@ int	long_loop(t_p *p)
 
 
 
-		/* 	printf("min [%d] [%d][%d] = [%d]\nmax [%d] [%d][%d] = [%d]\n",
+			/* 	printf("min [%d] [%d][%d] = [%d]\nmax [%d] [%d][%d] = [%d]\n",
 			mi, pp_g_egg(p->pb, p->lenb, p->min), pp_d_egg(p->pb, p->lenb, p->min), p->min,
 			ma, pp_g_egg(p->pb, p->lenb, p->max_b), pp_d_egg(p->pb, p->lenb, p->max_b), p->max_b);
- */
-		
+ 			*/
+
 			if ((pp_g_egg(p->pb, p->lenb, p->max_b) < pp_g_egg(p->pb, p->lenb, p->min) && mi > ma)
 			|| (pp_g_egg(p->pb, p->lenb, p->min) < pp_g_egg(p->pb, p->lenb, p->max_b) && ma > mi))
 				rrb(p, 0);
+			else if (pp_d_egg(p->pb, p->lenb, p->min) < pp_d_egg(p->pb, p->lenb, p->max_b) && ma == mi && 1 == 1)
+			{
+				/* 			
+				printf("min [%d] [%d][%d] = [%d]\nmax [%d] [%d][%d] = [%d]\n",
+				mi, pp_g_egg(p->pb, p->lenb, p->min), pp_d_egg(p->pb, p->lenb, p->min), p->min,
+				ma, pp_g_egg(p->pb, p->lenb, p->max_b), pp_d_egg(p->pb, p->lenb, p->max_b), p->max_b); */
+ 				rb(p, 0);
+				//r = 1;
+				//break;
+				//p->lenb = -1;
+			}
+			else if (pp_d_egg(p->pb, p->lenb, p->min) > pp_d_egg(p->pb, p->lenb, p->max_b) && ma == mi && 1 == 1)
+			{
+				/* 				
+				printf("min [%d] [%d][%d] = [%d]\nmax [%d] [%d][%d] = [%d]\n",
+				mi, pp_g_egg(p->pb, p->lenb, p->min), pp_d_egg(p->pb, p->lenb, p->min), p->min,
+				ma, pp_g_egg(p->pb, p->lenb, p->max_b), pp_d_egg(p->pb, p->lenb, p->max_b), p->max_b); */
+ 				rrb(p, 0);
+				//r = 1;
+				//break;
+				//p->lenb = -1;
+			}
 			else
 				rb(p, 0);
 		}	
@@ -217,10 +250,8 @@ int	long_loop(t_p *p)
 				ra(p, 0);
 			p->min = next_min(p);
 		}
-		else if (is_in_pill(p->pa, p->min, p->lena) == SUCCESS) // find min in pa push other -> pb
-		{
+		else if (is_in_pill(p->pa, p->min, p->lena) == SUCCESS)// find min in pa push other -> pb
 			pb(p , 0);
-		}
 	}
 	//printf("i == [%d]\n", p->count);
 	free(p);

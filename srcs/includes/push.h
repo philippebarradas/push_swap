@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/07 13:02:27 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/08 10:06:34 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		next_min(t_p *p);
 
 int	pp_g_egg(int *pill, int len, int val_med);
 int	pp_d_egg(int *pill, int len, int val_med);
+int	pp_g_val(int *pill, int len, int val_med);
+int	pp_d_val(int *pill, int len, int val_med);
 
 int	next_val_med_pb(t_p *p, int val_med);
 int	pp_g(int *pill, int len, int val_med);

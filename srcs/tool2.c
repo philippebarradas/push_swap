@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:23:21 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 08:55:37 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/08 10:06:19 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,35 @@ int	next_val_med_pb(t_p *p, int val_med)
 	}
 	return (val_med);
 }
+
+int	pp_g_val(int *pill, int len, int val_med)
+{
+	int i;
+
+	i = 0;
+	while (i <= len)
+	{
+		if (pill[i] >= val_med)
+			return (pill[i]);
+		i++;
+	}
+	return (i);
+}
+
+int	pp_d_val(int *pill, int len, int val_med)
+{
+	int i;
+
+	i = 0;
+	while (len - i > 0)
+	{
+		if (pill[len - i] >= val_med)
+			return (pill[len - i]);
+		i++;
+	}
+	return (i);
+}
+
 
 int	pp_g(int *pill, int len, int val_med)
 {
