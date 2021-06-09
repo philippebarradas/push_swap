@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 13:09:28 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:25:57 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef struct s_p
 	int			med;
 	int			div;
 }				t_p;
+
+
+void	fillpb_first_med(t_p *p, float av, int len);
+void	min_pb_top(t_p *p);
+void	oth(t_p *p);
+void	fillpa_sec_med(t_p *p, float av, int len);
+void	find_min_in_b(t_p *p);
 
 //t3
 int		next_val_med_pa(t_p *p);

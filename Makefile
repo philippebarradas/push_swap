@@ -6,7 +6,7 @@
 #    By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 09:51:11 by phbarrad          #+#    #+#              #
-#    Updated: 2021/06/09 13:09:34 by phbarrad         ###   ########.fr        #
+#    Updated: 2021/06/09 14:25:16 by phbarrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ NAMEC			= ${BLUE}${BOLD}$(NAME)${END}
 #                            Source Files                            #
 ######################################################################
 
-SRCS			= main.c error.c op.c op2.c ffree.c long_loop.c loop.c tool_loop.c tool2.c tool3.c
+SRCS			= main.c error.c op.c op2.c ffree.c long_start.c long_loop.c loop.c \
+				 tool_loop3.c tool_loop2.c tool_loop.c tool2.c tool3.c
 
 SRC				= $(addprefix srcs/, $(SRCS))
 

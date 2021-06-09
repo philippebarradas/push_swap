@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 10:57:17 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 13:30:32 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ void	free_all(t_p *p)
 	free(p);
 }
 
-void	disp_st( t_p *p)
+void	rrr(t_p *p, int x)
+{
+	rra(p, 1);
+	rrb(p, 1);
+	ft_putstr_fd_count("rrr\n", STDOUT, p);
+}
+
+ void	disp_st( t_p *p)
 {
 	int	i;
 	int	max;
@@ -92,9 +99,3 @@ void	disp_st( t_p *p)
 	usleep(20000);
 }
 
-void	rrr(t_p *p, int x)
-{
-	rra(p, 1);
-	rrb(p, 1);
-	ft_putstr_fd_count("rrr\n", STDOUT, p);
-}

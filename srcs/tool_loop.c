@@ -6,143 +6,11 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/04 12:43:29 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 13:19:01 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
-
-int	pa_is_trim(t_p *p)
-{
-	int	i;
-
-	i = 0;
-	while (i + 1 <= p->lena)
-	{
-		if (p->pa[i] < p->pa[i + 1])
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	pb_is_trim(t_p *p)
-{
-	int	i;
-
-	i = 0;
-	while (i + 1 <= p->lenb)
-	{
-		if (p->pb[i] > p->pb[i + 1])
-		{
-			return (ERROR);
-		}
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	pb_top_is_min(t_p *p)
-{
-	int	i;
-
-	i = 0;
-	if (p->lenb == -1)
-		return (ERROR);
-	while (i <= p->lenb)
-	{
-		if (p->pb[p->lenb] > p->pb[i])
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	pa_top_is_max(t_p *p)
-{
-	int	i;
-
-	i = 0;
-	while (i <= p->lena)
-	{
-		if (p->pb[0] < p->pa[i])
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	no_val_med_in_a(t_p *p, int val_med)
-{
-	int	i;
-
-	i = 0;
-	while (i <= p->lena)
-	{
-		if (p->pa[i] < val_med)
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	no_val_med_in_b(t_p *p, int val_med)
-{
-	int	i;
-
-	i = 0;
-	while (i <= p->lenb)
-	{
-		if (p->pb[i] >= val_med)
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
-
-int	min_is_in_pa(t_p *p, int min)
-{
-	int	r;
-
-	r = 0;
-	while (r <= p->lena)
-	{
-		if (min == p->pa[r])
-			return (SUCCESS);
-		r++;
-	}
-	return (ERROR);
-}
-
-int	find_val_med(t_p *p, int div)
-{
-	int	i;
-	int	max;
-	int	min;
-	int	e;
-
-	e = 0;
-	i = 0;
-	max = p->pa[i];
-	min = p->pa[i];
-	while (i <= p->lena)
-	{
-		if (p->pa[i] > max)
-			max = p->pa[i];
-		if (p->pa[i] < min)
-			min = p->pa[i];
-		i++;
-	}
-	if ((p->lena % 2) == 1)
-		e--;
-	while (e <= (p->lena / div) && min <= max)
-	{
-		if (min_is_in_pa(p, min) == SUCCESS)
-			e++;
-		min++;
-	}
-	return (min);
-}
 
 int	min_is_in_pb(t_p *p, int max)
 {
@@ -166,16 +34,15 @@ int	find_val_med_in_b(t_p *p, int div)
 	int	e;
 
 	e = 0;
-	i = 0;
-	max = p->pb[i];
-	min = p->pb[i];
-	while (i <= p->lenb)
+	i = -1;
+	max = p->pb[0];
+	min = p->pb[0];
+	while (++i <= p->lenb)
 	{
 		if (p->pb[i] > max)
 			max = p->pb[i];
 		if (p->pb[i] < min)
 			min = p->pb[i];
-		i++;
 	}
 	if ((p->lenb % 2) == 1)
 		e--;
@@ -185,7 +52,6 @@ int	find_val_med_in_b(t_p *p, int div)
 			e++;
 		max--;
 	}
-//	printf("max = [%d]\n", max);
 	return (max);
 }
 
@@ -216,7 +82,6 @@ int	pa_opti_fill(t_p *p)
 	while (e < p->lena)
 	{
 		next = p->pa[e + 1] + 1;
-		//printf("next = [%d] < [%d] || [%d]\n", next, p->pa[e], p->maxe);
 		while (next < p->pa[e])
 		{
 			if (is_in_pill(p->pa, next, p->lena) == SUCCESS
