@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 18:03:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 12:53:10 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:10:26 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*get_save(char *save)
 		free(save);
 		return (0);
 	}
-	if (!(rtn = malloc(sizeof(char) * ((ft_strlen(save) - i) + 1))))
+	rtn = malloc(sizeof(char) * ((ft_strlen(save) - i) + 1));
+	if (!rtn)
 		return (0);
 	i++;
 	while (save[i])
@@ -48,7 +49,8 @@ char	*get_line(char *str)
 		return (0);
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (!(rtn = malloc(sizeof(char) * (i + 1))))
+	rtn = malloc(sizeof(char) * (i + 1));
+	if (!rtn)
 		return (0);
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -60,20 +62,20 @@ char	*get_line(char *str)
 	return (rtn);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	char			*buff;
-	static char		*save;
-	int				reader;
+	char		*buff;
+	static char	*save;
+	int			reader;
 
 	reader = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (-1);
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while (!has_return(save) && reader != 0)
 	{
-		if ((reader = read(fd, buff, BUFFER_SIZE)) == -1)
+		reader = read(fd, buff, BUFFER_SIZE);
+		if (reader == -1)
 		{
 			free(buff);
 			return (-1);

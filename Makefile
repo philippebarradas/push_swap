@@ -6,7 +6,7 @@
 #    By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 09:51:11 by phbarrad          #+#    #+#              #
-#    Updated: 2021/06/09 14:25:16 by phbarrad         ###   ########.fr        #
+#    Updated: 2021/06/09 14:51:44 by phbarrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME			= push_swap
 NAME_BONUS		= checker
 CC				= @gcc
-CFLAGS			= #-fsanitize=leak #-Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror#-fsanitize=leak #-Wall -Wextra -Werror
 LIB_FLAGS		= -lncurses -lft -L ./libft
 RM				= @rm -rf
 LIBFT			= ./libft

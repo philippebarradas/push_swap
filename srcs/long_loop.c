@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:26:33 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:36:31 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,4 @@ void	find_min_in_b(t_p *p)
 		rrb(p, 0);
 	else
 		rb(p, 0);
-	/* else if (pp_d_egg(p->pb, p->lenb, p->min) < pp_d_egg(p->pb,
-			p->lenb, p->max_b) && ma == mi && 1 == 1)
-		rb(p, 0);
-	else if (pp_d_egg(p->pb, p->lenb, p->min) > pp_d_egg(p->pb,
-			p->lenb, p->max_b) && ma == mi && 1 == 1)
-		rrb(p, 0); */
 }

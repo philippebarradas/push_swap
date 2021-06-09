@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:03:55 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/19 13:38:06 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:48:48 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	err_msg(char *str)
 {
-	ft_putstr_fd("Error\n", STDERR);
+	ft_putstr_fd(str, STDERR);
 	return (ERROR);
 }
 

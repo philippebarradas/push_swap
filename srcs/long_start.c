@@ -6,11 +6,39 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:24:41 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:24:51 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:36:04 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
+
+int	loop_t_arg(t_p *p)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = p->pa[2];
+	b = p->pa[1];
+	c = p->pa[0];
+	if (a < b && b > c && a < c)
+	{
+		rra(p, 0);
+		sa(p, 0);
+	}
+	else if (a < b && b > a && a > c)
+		rra(p, 0);
+	else if (a > b && b < c && c > a)
+		sa(p, 0);
+	else if (a > b && b < c && a > c)
+		ra(p, 0);
+	else if (a > b && b > c && a > c)
+	{
+		ra(p, 0);
+		sa(p, 0);
+	}
+	return (SUCCESS);
+}
 
 void	first_meed(t_p *p)
 {

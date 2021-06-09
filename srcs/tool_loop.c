@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 13:19:01 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:32:32 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	pa_opti_fill(t_p *p)
 	int	next;
 
 	e = 0;
-	if (p->pa[0] != p->maxe)
+	if (p->pa[0] != p->max)
 		return (ERROR);
 	while (e < p->lena)
 	{
@@ -87,7 +87,7 @@ int	pa_opti_fill(t_p *p)
 			if (is_in_pill(p->pa, next, p->lena) == SUCCESS
 				|| is_in_pill(p->pb, next, p->lenb) == SUCCESS)
 				return (ERROR);
-			if (p->maxe <= 0)
+			if (p->max <= 0)
 				next--;
 			else
 				next++;

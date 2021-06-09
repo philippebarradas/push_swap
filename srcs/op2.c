@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op2.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:39:42 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 17:21:56 by philippe         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:48:07 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	rb(t_p *p, int x)
 
 void	rr(t_p *p, int x)
 {
+	(void)x;
 	ra(p, 1);
 	rb(p, 1);
 	ft_putstr_fd_count("rr\n", STDOUT, p);

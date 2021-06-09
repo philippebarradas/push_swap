@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:28:38 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:46:42 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ int	is_sort(t_p *p)
 	return (SUCCESS);
 }
 
-int	abs(int a)
-{
-	if (a < 0)
-		return (a * -1);
-	return (a);
-}
-
 void	ft_putstr_fd_count(char *s, int fd, t_p *p)
 {
 	int	i;
@@ -67,41 +60,29 @@ void	ft_putstr_fd_count(char *s, int fd, t_p *p)
 	while (s[++i])
 		write(fd, &(s[i]), 1);
 	p->count++;
-	disp_st(p);
 }
 
-int	loop_t_arg(t_p *p)
+void	findmm(t_p *p)
 {
-	int	a;
-	int	b;
-	int	c;
+	int	i;
 
-	a = p->pa[2];
-	b = p->pa[1];
-	c = p->pa[0];
-	if (a < b && b > c && a < c)
+	i = 0;
+	p->count = 0;
+	p->max = p->pa[i];
+	p->min = p->pa[i];
+	while (i <= p->lena)
 	{
-		rra(p, 0);
-		sa(p, 0);
+		if (p->pa[i] > p->max)
+			p->max = p->pa[i];
+		if (p->pa[i] < p->min)
+			p->min = p->pa[i];
+		i++;
 	}
-	else if (a < b && b > a && a > c)
-		rra(p, 0);
-	else if (a > b && b < c && c > a)
-		sa(p, 0);
-	else if (a > b && b < c && a > c)
-		ra(p, 0);
-	else if (a > b && b > c && a > c)
-	{
-		ra(p, 0);
-		sa(p, 0);
-	}
-	return (SUCCESS);
 }
 
 int	main(int ac, char **av)
 {
 	t_p	*p;
-	int	i;
 
 	if (check_error(ac, av, 0, 0) == 1)
 		return (err_msg("Error\n"));
@@ -115,22 +96,7 @@ int	main(int ac, char **av)
 		free(p);
 		return (err_msg("Error\n"));
 	}
-	p->count = 0;
-	i = 0;
-	p->max = p->pa[i];
-	p->maxe = p->pa[i];
-	p->min = p->pa[i];
-	while (i <= p->lena)
-	{
-		if (abs(p->pa[i]) > p->max)
-			p->max = abs(p->pa[i]);
-		if (p->pa[i] > p->maxe)
-			p->maxe = p->pa[i];
-		if (p->pa[i] < p->min)
-			p->min = p->pa[i];
-		i++;
-	}
-	p->max += 10;
+	findmm(p);
 	if (p->lena < 3)
 		return (loop_t_arg(p));
 	if (p->lena < 10)

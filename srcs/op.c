@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: philippe <philippe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 16:21:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/21 17:22:25 by philippe         ###   ########.fr       */
+/*   Updated: 2021/06/09 14:47:51 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	sb(t_p *p, int x)
 
 void	ss(t_p *p, int x)
 {
+	(void)x;
 	sb(p, 1);
 	sa(p, 1);
 	ft_putstr_fd_count("ss\n", STDOUT, p);
