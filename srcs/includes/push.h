@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:11:50 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/08 10:06:34 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 13:09:28 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef struct s_p
 	int			med;
 	int			div;
 }				t_p;
+
+//t3
+int		next_val_med_pa(t_p *p);
+int		pp_g_med(int *pill, int len, int val_med);
+int		pp_d_med(int *pill, int len, int val_med);
+int		next_min(t_p *p);
+void	find_max_b(t_p *p);
 
 //tool
 int		next_min(t_p *p);
@@ -107,6 +114,5 @@ void		rrr(t_p *p, int x);
 
 void	ft_putstr_fd_count(char *s, int fd, t_p *p);
 
-int short_loop(t_p *p);
 
 #endif

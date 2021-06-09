@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 10:55:28 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/09 13:08:29 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	loop_t_arg(t_p *p)
 int	main(int ac, char **av)
 {
 	t_p	*p;
+	int	i;
 
 	if (check_error(ac, av, 0, 0) == 1)
 		return (err_msg("Error\n"));
@@ -115,28 +116,21 @@ int	main(int ac, char **av)
 		return (err_msg("Error\n"));
 	}
 	p->count = 0;
-	int	i;
 	i = 0;
 	p->max = p->pa[i];
 	p->maxe = p->pa[i];
 	p->min = p->pa[i];
-	p->midd_a = p->pa[i];
-	while (i  <= p->lena)
+	while (i <= p->lena)
 	{
 		if (abs(p->pa[i]) > p->max)
 			p->max = abs(p->pa[i]);
 		if (p->pa[i] > p->maxe)
 			p->maxe = p->pa[i];
-		if (p->pa[i] > p->midd_a && i <= p->lena / 2)
-			p->midd_a = p->pa[i];
 		if (p->pa[i] < p->min)
 			p->min = p->pa[i];
 		i++;
 	}
 	p->max += 10;
-	//disp_st(p);
-	//ft_putstr_fd("\n", STDOUT);
-	//return (0);
 	if (p->lena < 3)
 		return (loop_t_arg(p));
 	if (p->lena < 10)
