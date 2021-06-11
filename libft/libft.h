@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:18:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 15:07:23 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 15:22:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 long				ft_atol(const char *str);
 int					get_next_line(int fd, char **line);
+char                *ft_strdup(const char *s1);
 
 size_t				ft_strlen(const char *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 18:03:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 15:10:26 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 16:37:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ char	*get_line(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 		i++;
-	rtn = malloc(sizeof(char) * (i + 1));
+	rtn = malloc(sizeof(char) * (i + 2));
 	if (!rtn)
 		return (0);
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
 		rtn[i] = str[i];
 		i++;

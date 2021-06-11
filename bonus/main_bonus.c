@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 12:47:55 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 16:33:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,33 +67,38 @@ int	find_cmd(char *cmd, t_p *p)
 
 int	lleave(t_p *p, char *cmd)
 {
-	//printf("[%d][%d][%d]\n[%s][\n]", cmd[0], cmd[1], cmd[2], cmd);
 	if (ft_strcmp(cmd, "\n") == 0)
-		return (ft_putstr_fd_ret("Error\n", STDOUT, ERROR));
+	{
+		free(cmd);
+		free_all(p);
+		return (ft_putstr_fd_ret("Error\n", STDERR, ERROR));
+	}
 	if (is_sort(p) == ERROR)
 	{
 		free_all(p);
-		return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
+		ffree(cmd);
+		return (ft_putstr_fd_ret("K0\n", STDERR, ERROR));
 	}
 	free_all(p);
-	return (ft_putstr_fd_ret("OKe\n", STDOUT, SUCCESS));
+	ffree(cmd);
+	return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
 }
 
 int	loop(t_p *p)
 {
 	char	*cmd;
 
+	cmd = NULL;
 	while (1)
 	{
-		get_next_line(1, &cmd);
+		get_next_line(0, &cmd);
 		if (cmd[0] <= 0)
 			return (lleave(p, cmd));
-		if (find_cmd(cmd, p) == ERROR)
+		else if (find_cmd(cmd, p) == ERROR)
 		{
 			free_all(p);
-			free(cmd);
-			err_msg("Error\n");
-			return (ERROR);
+			ffree(cmd);
+			return (ft_putstr_fd_ret("Error\n", STDERR, ERROR));
 		}
 		ffree(cmd);
 	}

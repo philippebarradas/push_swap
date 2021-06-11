@@ -17,7 +17,7 @@
 NAME			= push_swap
 NAME_BONUS		= checker
 CC				= @gcc
-CFLAGS			=  #-Wall -Wextra -Werror #-fsanitize=leak
+CFLAGS			=  -Wall -Wextra -Werror #-fsanitize=leak
 LIB_FLAGS		= -lncurses -lft -L ./libft
 RM				= @rm -rf
 LIBFT			= ./libft
