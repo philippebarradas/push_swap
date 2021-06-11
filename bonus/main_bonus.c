@@ -38,45 +38,45 @@ int	fill_pile(int ac, char **av, t_p *p)
 
 int	find_cmd(char *cmd, t_p *p)
 {
-	if (ft_strcmp(cmd, "sa") == 0)
+	if (ft_strcmp(cmd, "sa\n") == 0)
 		sa(p);
-	else if (ft_strcmp(cmd, "sb") == 0)
+	else if (ft_strcmp(cmd, "sb\n") == 0)
 		sb(p);
-	else if (ft_strcmp(cmd, "ss") == 0)
+	else if (ft_strcmp(cmd, "ss\n") == 0)
 		ss(p);
-	else if (ft_strcmp(cmd, "pa") == 0)
+	else if (ft_strcmp(cmd, "pa\n") == 0)
 		pa(p);
-	else if (ft_strcmp(cmd, "pb") == 0)
+	else if (ft_strcmp(cmd, "pb\n") == 0)
 		pb(p);
-	else if (ft_strcmp(cmd, "ra") == 0)
+	else if (ft_strcmp(cmd, "ra\n") == 0)
 		ra(p);
-	else if (ft_strcmp(cmd, "rb") == 0)
+	else if (ft_strcmp(cmd, "rb\n") == 0)
 		rb(p);
-	else if (ft_strcmp(cmd, "rr") == 0)
+	else if (ft_strcmp(cmd, "rr\n") == 0)
 		rr(p);
-	else if (ft_strcmp(cmd, "rra") == 0)
+	else if (ft_strcmp(cmd, "rra\n") == 0)
 		rra(p);
-	else if (ft_strcmp(cmd, "rrb") == 0)
+	else if (ft_strcmp(cmd, "rrb\n") == 0)
 		rrb(p);
-	else if (ft_strcmp(cmd, "rrr") == 0)
+	else if (ft_strcmp(cmd, "rrr\n") == 0)
 		rrr(p);
 	else
 		return (ERROR);
 	return (SUCCESS);
 }
 
-void	leave(t_p *p)
+int	lleave(t_p *p, char *cmd)
 {
+	//printf("[%d][%d][%d]\n[%s][\n]", cmd[0], cmd[1], cmd[2], cmd);
+	if (ft_strcmp(cmd, "\n") == 0)
+		return (ft_putstr_fd_ret("Error\n", STDOUT, ERROR));
 	if (is_sort(p) == ERROR)
 	{
 		free_all(p);
 		return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
 	}
-	else
-	{
-		free_all(p);
-		return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
-	}
+	free_all(p);
+	return (ft_putstr_fd_ret("OKe\n", STDOUT, SUCCESS));
 }
 
 int	loop(t_p *p)
@@ -85,9 +85,9 @@ int	loop(t_p *p)
 
 	while (1)
 	{
-		get_next_line(0, &cmd);
+		get_next_line(1, &cmd);
 		if (cmd[0] <= 0)
-			lleave(p);
+			return (lleave(p, cmd));
 		if (find_cmd(cmd, p) == ERROR)
 		{
 			free_all(p);

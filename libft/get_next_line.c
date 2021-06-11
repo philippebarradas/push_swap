@@ -47,13 +47,13 @@ char	*get_line(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i] && str[i] != '\n')
+	while (str[i])
 		i++;
 	rtn = malloc(sizeof(char) * (i + 1));
 	if (!rtn)
 		return (0);
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (str[i])
 	{
 		rtn[i] = str[i];
 		i++;
