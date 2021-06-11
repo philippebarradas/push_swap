@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 16:42:01 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 09:53:02 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	loop(t_p *p)
 		{
 			free_all(p);
 			free(cmd);
+			err_msg("Error\n");
 			return (ERROR);
 		}
 		ffree(cmd);
@@ -110,11 +111,10 @@ int	loop(t_p *p)
 int	main(int ac, char **av)
 {
 	t_p	*p;
-
-	if (check_error(ac, av, 0, 0) == 1)
-		return (err_msg("Error\n"));
 	if (ac == 1)
 		return (SUCCESS);
+	if (check_error(ac, av, 0, 0) == 1)
+		return (err_msg("Error\n"));
 	p = malloc(sizeof(t_p));
 	if (!p)
 		return (ERROR);

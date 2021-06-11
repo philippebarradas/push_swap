@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:03:55 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:48:48 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 09:47:28 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,31 @@ int	err_msg(char *str)
 	return (ERROR);
 }
 
+int	check_is_numbers(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] < 48 || str[i] > 57))
+		{
+			if ((str[i] == '-' || str[i] == '+') && i == 0) 
+				;
+			else
+				return (ERROR);
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
 int	check_error(int ac, char **av, int x, int y)
 {
 	while (++x < ac)
 	{
+		if (check_is_numbers(av[x]) == ERROR)
+			return (ERROR);
 		if (ft_strlen(av[x]) > 11 || ft_atol(av[x]) > 2147483647
 			|| ft_atol(av[x]) < -2147483648)
 			return (ERROR);
