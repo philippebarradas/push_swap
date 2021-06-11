@@ -6,13 +6,13 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:24:41 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 09:29:04 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:50:12 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push.h"
 
-int	loop_t_arg(t_p *p)
+int	loop_t_arg(t_p *p, int ac)
 {
 	int	a;
 	int	b;
@@ -21,15 +21,15 @@ int	loop_t_arg(t_p *p)
 	a = p->pa[2];
 	b = p->pa[1];
 	c = p->pa[0];
-	if (a < b && b > c && a < c)
+	if ((a > b && b < c && c > a) || (ac == 3 && is_sort(p) == ERROR))
+		sa(p, 0);
+	else if (a < b && b > c && a < c && is_sort(p) == ERROR)
 	{
 		rra(p, 0);
 		sa(p, 0);
 	}
 	else if (a < b && b > a && a > c)
 		rra(p, 0);
-	else if (a > b && b < c && c > a)
-		sa(p, 0);
 	else if (a > b && b < c && a > c)
 		ra(p, 0);
 	else if (a > b && b > c && a > c)

@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:03:55 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 09:47:28 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:48:09 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	err_msg(char *str)
 
 int	check_is_numbers(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
 		if ((str[i] < 48 || str[i] > 57))
 		{
-			if ((str[i] == '-' || str[i] == '+') && i == 0) 
+			if ((str[i] == '-' || str[i] == '+') && i == 0)
 				;
 			else
 				return (ERROR);
@@ -60,6 +60,22 @@ int	check_error(int ac, char **av, int x, int y)
 			if (ft_strcmp(av[x], av[y]) == 0 && x != y)
 				return (ERROR);
 		}
+	}
+	return (SUCCESS);
+}
+
+int	is_sort(t_p *p)
+{
+	int	i;
+
+	i = 0;
+	if (p->lenb != -1)
+		return (ERROR);
+	while (i + 1 <= p->lena)
+	{
+		if (p->pa[i] < p->pa[i + 1])
+			return (ERROR);
+		i++;
 	}
 	return (SUCCESS);
 }

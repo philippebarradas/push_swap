@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:46:42 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:44:33 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 
 	if (check_error(ac, av, 0, 0) == 1)
 		return (err_msg("Error\n"));
-	if (ac == 1)
+	if (ac <= 2)
 		return (SUCCESS);
 	p = malloc(sizeof(t_p));
 	if (!p)
@@ -98,7 +98,7 @@ int	main(int ac, char **av)
 	}
 	findmm(p);
 	if (p->lena < 3)
-		return (loop_t_arg(p));
+		return (loop_t_arg(p, ac));
 	if (p->lena < 10)
 		return (loop(p));
 	return (long_loop(p));

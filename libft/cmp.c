@@ -6,16 +6,25 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 13:36:00 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 15:04:04 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:52:56 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
+	int	e;
 
+	e = 0;
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+	if (s1[0] == '+')
 		i++;
-	return (s1[i] - s2[i]);
+	if (s2[0] == '+')
+		e++;
+	while (s1[i] == s2[e] && s1[i] != '\0' && s2[e] != '\0')
+	{
+		i++;
+		e++;
+	}
+	return (s1[i] - s2[e]);
 }

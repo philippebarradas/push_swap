@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:08:07 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 09:53:02 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:47:55 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,18 @@ int	find_cmd(char *cmd, t_p *p)
 	return (SUCCESS);
 }
 
-int	is_sort(t_p *p)
+void	leave(t_p *p)
 {
-	int	i;
-
-	i = 0;
-	if (p->lenb != -1)
-		return (ERROR);
-	while (i + 1 <= p->lena)
+	if (is_sort(p) == ERROR)
 	{
-		if (p->pa[i] < p->pa[i + 1])
-			return (ERROR);
-		i++;
+		free_all(p);
+		return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
 	}
-	return (SUCCESS);
+	else
+	{
+		free_all(p);
+		return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
+	}
 }
 
 int	loop(t_p *p)
@@ -89,18 +87,7 @@ int	loop(t_p *p)
 	{
 		get_next_line(0, &cmd);
 		if (cmd[0] <= 0)
-		{
-			if (is_sort(p) == ERROR)
-			{
-				free_all(p);
-				return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
-			}
-			else
-			{
-				free_all(p);
-				return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
-			}
-		}
+			lleave(p);
 		if (find_cmd(cmd, p) == ERROR)
 		{
 			free_all(p);
@@ -117,6 +104,7 @@ int	loop(t_p *p)
 int	main(int ac, char **av)
 {
 	t_p	*p;
+
 	if (ac == 1)
 		return (SUCCESS);
 	if (check_error(ac, av, 0, 0) == 1)

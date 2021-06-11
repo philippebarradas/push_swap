@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:03:55 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 09:47:40 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 10:54:34 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	err_msg(char *str)
 
 int	check_is_numbers(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
 		if ((str[i] < 48 || str[i] > 57))
 		{
-			if ((str[i] == '-' || str[i] == '+') && i == 0) 
+			if ((str[i] == '-' || str[i] == '+') && i == 0)
 				;
 			else
 				return (ERROR);

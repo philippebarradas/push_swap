@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:18:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/05/23 16:42:06 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:48:22 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_p
 
 int			err_msg(char *str);
 int			check_error(int ac, char **av, int x, int y);
+int			is_sort(t_p *p);
 
 void		ffree(void *str);
 void		free_all(t_p *p);
