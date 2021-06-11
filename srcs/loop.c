@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:09:58 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 13:05:46 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 09:28:57 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ int	loop(t_p *p)
 		else
 			pa(p, 0);
 	}
-	free(p);
+	free_all(p);
 	return (SUCCESS);
 }

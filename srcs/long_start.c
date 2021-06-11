@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:24:41 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/09 14:36:04 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/11 09:29:04 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ int	long_loop(t_p *p)
 		else if (is_in_pill(p->pa, p->min, p->lena) == SUCCESS)
 			pb(p, 0);
 	}
-	free(p);
+	free_all(p);
 	return (SUCCESS);
 }
