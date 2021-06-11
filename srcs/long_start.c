@@ -37,6 +37,7 @@ int	loop_t_arg(t_p *p)
 		ra(p, 0);
 		sa(p, 0);
 	}
+	free_all(p);
 	return (SUCCESS);
 }
 

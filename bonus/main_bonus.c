@@ -91,9 +91,15 @@ int	loop(t_p *p)
 		if (cmd[0] <= 0)
 		{
 			if (is_sort(p) == ERROR)
+			{
+				free_all(p);
 				return (ft_putstr_fd_ret("K0\n", STDOUT, ERROR));
+			}
 			else
+			{
+				free_all(p);
 				return (ft_putstr_fd_ret("OK\n", STDOUT, SUCCESS));
+			}
 		}
 		if (find_cmd(cmd, p) == ERROR)
 		{
@@ -104,7 +110,7 @@ int	loop(t_p *p)
 		}
 		ffree(cmd);
 	}
-	free(p);
+	free_all(p);
 	return (SUCCESS);
 }
 
