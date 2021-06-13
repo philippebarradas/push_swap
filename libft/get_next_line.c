@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 18:03:31 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 16:37:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/13 13:29:44 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ char	*get_line(char *str)
 
 void	fffree(char *save, char **line)
 {
+	save = get_save(save);
 	if (ft_strcmp(*line, "sa") != 0 && ft_strcmp(*line, "sb") != 0
-			&& ft_strcmp(*line, "ss") != 0 && ft_strcmp(*line, "pa") != 0
-			&& ft_strcmp(*line, "pb") != 0 && ft_strcmp(*line, "ra") != 0
-			&& ft_strcmp(*line, "rb") != 0 && ft_strcmp(*line, "rr") != 0
-			&& ft_strcmp(*line, "rra") != 0 && ft_strcmp(*line, "rrb") != 0
+		&& ft_strcmp(*line, "ss") != 0 && ft_strcmp(*line, "pa") != 0
+		&& ft_strcmp(*line, "pb") != 0 && ft_strcmp(*line, "ra") != 0
+		&& ft_strcmp(*line, "rb") != 0 && ft_strcmp(*line, "rr") != 0
+		&& ft_strcmp(*line, "rra") != 0 && ft_strcmp(*line, "rrb") != 0
 		&& ft_strcmp(*line, "rrr") != 0)
 		free(save);
 }
@@ -101,7 +102,6 @@ int	get_next_line(int fd, char **line)
 	}
 	free(buff);
 	*line = get_line(save);
-	save = get_save(save);
 	fffree(save, line);
 	if (reader == 0)
 		return (0);
