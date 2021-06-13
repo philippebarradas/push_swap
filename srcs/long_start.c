@@ -6,7 +6,7 @@
 /*   By: phbarrad <phbarrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/09 14:24:41 by phbarrad          #+#    #+#             */
-/*   Updated: 2021/06/11 12:50:12 by phbarrad         ###   ########.fr       */
+/*   Updated: 2021/06/13 16:08:15 by phbarrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	first_meed(t_p *p)
 	if (p->lena < 200)
 	{
 		p->val_med_a = find_val_med(p, 2);
-		fillpb_first_med(p, 2, 15);
-		p->val_med_b = find_val_med_in_b(p, 3);
-		fillpa_sec_med(p, 3, 15);
+		fillpb_first_med(p, 3, 25);
+		p->val_med_b = find_val_med_in_b(p, 2);
+		fillpa_sec_med(p, 3, 20);
 	}
 	else if (p->lena >= 200)
 	{
