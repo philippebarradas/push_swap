@@ -67,6 +67,17 @@ char	*get_line(char *str)
 	return (rtn);
 }
 
+void	fffree(char *save, char **line)
+{
+	if (ft_strcmp(*line, "sa") != 0 && ft_strcmp(*line, "sb") != 0
+			&& ft_strcmp(*line, "ss") != 0 && ft_strcmp(*line, "pa") != 0
+			&& ft_strcmp(*line, "pb") != 0 && ft_strcmp(*line, "ra") != 0
+			&& ft_strcmp(*line, "rb") != 0 && ft_strcmp(*line, "rr") != 0
+			&& ft_strcmp(*line, "rra") != 0 && ft_strcmp(*line, "rrb") != 0
+		&& ft_strcmp(*line, "rrr") != 0)
+		free(save);
+}
+
 int	get_next_line(int fd, char **line)
 {
 	char		*buff;
@@ -91,6 +102,7 @@ int	get_next_line(int fd, char **line)
 	free(buff);
 	*line = get_line(save);
 	save = get_save(save);
+	fffree(save, line);
 	if (reader == 0)
 		return (0);
 	return (1);

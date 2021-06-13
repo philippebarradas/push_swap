@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 
+push_swap_tester
 # Object files
 *.o
 *.ko
