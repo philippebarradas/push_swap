@@ -58,6 +58,11 @@ char	*get_line(char *str)
 		rtn[i] = str[i];
 		i++;
 	}
+	if (str[0] == '\n')
+	{
+		rtn[0] = '\n';
+		i++;
+	}
 	rtn[i] = '\0';
 	return (rtn);
 }

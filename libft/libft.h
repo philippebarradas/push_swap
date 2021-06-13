@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 100000
+# define BUFFER_SIZE 100
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
